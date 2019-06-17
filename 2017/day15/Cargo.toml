@@ -1,0 +1,6 @@
+[package]
+name = "year2017day15"
+version = "0.1.0"
+authors = ["Jonas Karlsson <jonaskarlsson@fripost.org>"]
+
+[dependencies]

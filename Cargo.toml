@@ -1,0 +1,112 @@
+[package]
+name = "advent-of-code"
+version = "0.1.0"
+authors = ["Jonas Karlsson <jonaskarlsson@fripost.org>"]
+
+[dependencies]
+year2015day01 = { path = "2015/day01" }
+year2015day02 = { path = "2015/day02" }
+year2015day03 = { path = "2015/day03" }
+year2015day04 = { path = "2015/day04" }
+year2015day05 = { path = "2015/day05" }
+year2015day06 = { path = "2015/day06" }
+year2015day07 = { path = "2015/day07" }
+year2015day08 = { path = "2015/day08" }
+year2015day09 = { path = "2015/day09" }
+year2015day10 = { path = "2015/day10" }
+year2015day11 = { path = "2015/day11" }
+year2015day12 = { path = "2015/day12" }
+year2015day13 = { path = "2015/day13" }
+year2015day14 = { path = "2015/day14" }
+year2015day15 = { path = "2015/day15" }
+year2015day16 = { path = "2015/day16" }
+year2015day17 = { path = "2015/day17" }
+year2015day18 = { path = "2015/day18" }
+year2015day19 = { path = "2015/day19" }
+year2015day20 = { path = "2015/day20" }
+year2015day21 = { path = "2015/day21" }
+year2015day22 = { path = "2015/day22" }
+year2015day23 = { path = "2015/day23" }
+year2015day24 = { path = "2015/day24" }
+year2015day25 = { path = "2015/day25" }
+
+year2016day01 = { path = "2016/day01" }
+year2016day02 = { path = "2016/day02" }
+year2016day03 = { path = "2016/day03" }
+year2016day04 = { path = "2016/day04" }
+year2016day05 = { path = "2016/day05" }
+year2016day06 = { path = "2016/day06" }
+year2016day07 = { path = "2016/day07" }
+year2016day08 = { path = "2016/day08" }
+year2016day09 = { path = "2016/day09" }
+year2016day10 = { path = "2016/day10" }
+year2016day11 = { path = "2016/day11" }
+year2016day12 = { path = "2016/day12" }
+year2016day13 = { path = "2016/day13" }
+year2016day14 = { path = "2016/day14" }
+year2016day15 = { path = "2016/day15" }
+year2016day16 = { path = "2016/day16" }
+year2016day17 = { path = "2016/day17" }
+year2016day18 = { path = "2016/day18" }
+year2016day19 = { path = "2016/day19" }
+year2016day20 = { path = "2016/day20" }
+year2016day21 = { path = "2016/day21" }
+year2016day22 = { path = "2016/day22" }
+year2016day23 = { path = "2016/day23" }
+year2016day24 = { path = "2016/day24" }
+year2016day25 = { path = "2016/day25" }
+
+year2017day01 = { path = "2017/day01" }
+year2017day02 = { path = "2017/day02" }
+year2017day03 = { path = "2017/day03" }
+year2017day04 = { path = "2017/day04" }
+year2017day05 = { path = "2017/day05" }
+year2017day06 = { path = "2017/day06" }
+year2017day07 = { path = "2017/day07" }
+year2017day08 = { path = "2017/day08" }
+year2017day09 = { path = "2017/day09" }
+year2017day10 = { path = "2017/day10" }
+year2017day11 = { path = "2017/day11" }
+year2017day12 = { path = "2017/day12" }
+year2017day13 = { path = "2017/day13" }
+year2017day14 = { path = "2017/day14" }
+year2017day15 = { path = "2017/day15" }
+year2017day16 = { path = "2017/day16" }
+year2017day17 = { path = "2017/day17" }
+year2017day18 = { path = "2017/day18" }
+year2017day19 = { path = "2017/day19" }
+year2017day20 = { path = "2017/day20" }
+year2017day21 = { path = "2017/day21" }
+year2017day22 = { path = "2017/day22" }
+year2017day23 = { path = "2017/day23" }
+year2017day24 = { path = "2017/day24" }
+year2017day25 = { path = "2017/day25" }
+
+year2018day01 = { path = "2018/day01" }
+year2018day02 = { path = "2018/day02" }
+year2018day03 = { path = "2018/day03" }
+year2018day04 = { path = "2018/day04" }
+year2018day05 = { path = "2018/day05" }
+year2018day06 = { path = "2018/day06" }
+year2018day07 = { path = "2018/day07" }
+year2018day08 = { path = "2018/day08" }
+year2018day09 = { path = "2018/day09" }
+year2018day10 = { path = "2018/day10" }
+year2018day11 = { path = "2018/day11" }
+year2018day12 = { path = "2018/day12" }
+year2018day13 = { path = "2018/day13" }
+year2018day14 = { path = "2018/day14" }
+year2018day15 = { path = "2018/day15" }
+year2018day16 = { path = "2018/day16" }
+year2018day17 = { path = "2018/day17" }
+year2018day18 = { path = "2018/day18" }
+year2018day19 = { path = "2018/day19" }
+year2018day20 = { path = "2018/day20" }
+year2018day21 = { path = "2018/day21" }
+year2018day22 = { path = "2018/day22" }
+year2018day23 = { path = "2018/day23" }
+year2018day24 = { path = "2018/day24" }
+year2018day25 = { path = "2018/day25" }
+
+clap = "*"
+common = {path = "common"}

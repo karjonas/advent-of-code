@@ -1,0 +1,7 @@
+[package]
+name = "year2016day21"
+version = "0.1.0"
+authors = ["Jonas Karlsson <jonaskarlsson@fripost.org>"]
+
+[dependencies]
+regex = "*"

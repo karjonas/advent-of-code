@@ -1,0 +1,9 @@
+[package]
+name = "year2015day04"
+version = "0.1.0"
+authors = ["Jonas Karlsson <jonaskarlsson@fripost.org>"]
+
+[dependencies]
+common = {path = "../../common" }
+rust-crypto = "*"
+rayon = "*"

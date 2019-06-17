@@ -1,0 +1,8 @@
+[package]
+name = "year2015day12"
+version = "0.1.0"
+authors = ["Jonas Karlsson <jonaskarlsson@fripost.org>"]
+
+[dependencies]
+common = {path = "../../common"}
+serde_json = "*"
