@@ -135,9 +135,9 @@ fn part_two() -> usize {
             xmin = best.0 - dist as i64;
             xmax = best.0 + dist as i64;
             ymin = best.1 - dist as i64;
-            ymax = best.1 + dist as i64;;
+            ymax = best.1 + dist as i64;
             zmin = best.2 - dist as i64;
-            zmax = best.2 + dist as i64;;
+            zmax = best.2 + dist as i64;
             dist = dist / 2;
         }
     }

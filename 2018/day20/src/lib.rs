@@ -230,7 +230,7 @@ fn parse_recursive(chars_in: &Vec<char>) -> Action {
     }
 
     if is_branch(&chars) {
-        let branches = split_branch(&chars);;
+        let branches = split_branch(&chars);
         action.branch.push(parse_recursive(&branches[0]));
         action.branch.push(parse_recursive(&branches[1]));
     } else if subs.len() > 1 {

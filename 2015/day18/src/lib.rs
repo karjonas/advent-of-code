@@ -6,7 +6,7 @@ fn parse_input(input: &str, part_two: bool) -> Vec<Vec<char>> {
     let lines = input.lines().collect::<Vec<_>>();
     let mut ret = Vec::new();
     for line in lines {
-        let mut line_chars = line.chars().collect::<Vec<char>>();
+        let line_chars = line.chars().collect::<Vec<char>>();
         ret.push(line_chars);
     }
 
