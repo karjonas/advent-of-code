@@ -1,0 +1,8 @@
+[package]
+name = "year2019day24"
+version = "0.1.0"
+authors = ["Jonas Karlsson <jonaskarlsson@fripost.org>"]
+
+[dependencies]
+common = {path = "../../common"}
+regex = "*"
