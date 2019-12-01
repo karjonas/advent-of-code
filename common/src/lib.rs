@@ -5,7 +5,7 @@ pub fn read_file(path: &str) -> String {
     let mut file = File::open(path).unwrap();
     let mut contents = String::new();
     file.read_to_string(&mut contents).unwrap();
-    return contents.to_string();
+    return contents.trim_end_matches('\n').to_string();
 }
 
 pub fn filled_vector<T: Clone>(size: usize, value: T) -> Vec<T> {
