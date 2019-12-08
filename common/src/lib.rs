@@ -101,6 +101,13 @@ pub fn string_to_usize(s: &str) -> usize {
     return s.to_string().trim().parse::<usize>().unwrap();
 }
 
+pub fn char_to_u8(c: char) -> u8 {
+    assert!((c as u8) >= ('0' as u8));
+    assert!((c as u8) <= ('9' as u8));
+
+    return (c as u8) - ('0' as u8);
+}
+
 pub fn strip_characters(original: &str, to_strip: &str) -> String {
     let mut result = String::new();
     for c in original.chars() {
