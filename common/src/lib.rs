@@ -124,3 +124,9 @@ pub fn is_number(c: &str) -> bool {
         _ => return false,
     }
 }
+
+pub fn grow<T: Clone>(vec: &mut Vec<T>, size: usize, default_value: T) {
+    if vec.len() < size {
+        vec.resize(size, default_value);
+    }
+}
