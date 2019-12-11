@@ -1,127 +1,12 @@
 extern crate common;
+extern crate intcode;
 
 use std::collections::VecDeque;
 
-const OPADD: i64 = 1;
-const OPMUL: i64 = 2;
-const OPSTORE: i64 = 3;
-const OPPRINT: i64 = 4;
-const OPJMPTRUE: i64 = 5;
-const OPJMPFALSE: i64 = 6;
-const OPLT: i64 = 7;
-const OPEQ: i64 = 8;
-
-const OPHALT: i64 = 99;
-
-fn parse_input(input: &str) -> Vec<i64> {
-    return input
-        .split(',')
-        .map(|v| common::string_to_i64(v))
-        .collect::<Vec<_>>();
-}
-
-fn run_continue(
-    mut memory: Vec<i64>,
-    mut input_numbers: VecDeque<i64>,
-    mut index: usize,
-) -> (Vec<i64>, i64, usize, bool) {
-    let size = memory.len();
-    let mut output_number = 0;
-    let mut halted = false;
-    let mut outputset = false;
-
-    while index < size {
-        let op_raw = memory[index];
-        let op = op_raw % 100;
-        let mode0 = (op_raw % 1000) / 100;
-        let mode1 = (op_raw % 10000) / 1000;
-        let mode2 = (op_raw % 100000) / 10000;
-
-        assert!(mode0 == 1 || mode0 == 0);
-        assert!(mode1 == 1 || mode1 == 0);
-        assert!(mode2 == 0);
-        assert!(mode2 == 1 || mode2 == 0);
-
-        if op == OPADD {
-            let i0 = memory[index + 1];
-            let i1 = memory[index + 2];
-            let i2 = memory[index + 3];
-            let v0 = if mode0 == 1 { i0 } else { memory[i0 as usize] };
-            let v1 = if mode1 == 1 { i1 } else { memory[i1 as usize] };
-            let dest = i2;
-            let value = v0 + v1;
-            memory[dest as usize] = value;
-            index += 4;
-        } else if op == OPMUL {
-            let i0 = memory[index + 1];
-            let i1 = memory[index + 2];
-            let i2 = memory[index + 3];
-            let v0 = if mode0 == 1 { i0 } else { memory[i0 as usize] };
-            let v1 = if mode1 == 1 { i1 } else { memory[i1 as usize] };
-            let dest = i2;
-            let value = v0 * v1;
-            memory[dest as usize] = value;
-            index += 4;
-        } else if op == OPSTORE {
-            assert!(mode0 == 0);
-            if input_numbers.is_empty() {
-                break;
-            }
-
-            let i0 = memory[index + 1];
-            let dest = i0;
-            memory[dest as usize] = input_numbers.pop_front().unwrap();
-            index += 2;
-        } else if op == OPPRINT {
-            let i0 = memory[index + 1];
-            let dest = if mode0 == 1 { i0 } else { memory[i0 as usize] };
-            assert_eq!(outputset, false);
-            outputset = true;
-            output_number = dest;
-            index += 2;
-        } else if op == OPJMPTRUE || op == OPJMPFALSE {
-            let i0 = memory[index + 1];
-            let i1 = memory[index + 2];
-            let v0 = if mode0 == 1 { i0 } else { memory[i0 as usize] };
-            let v1 = if mode1 == 1 { i1 } else { memory[i1 as usize] };
-            let jmptrue = op == OPJMPTRUE && v0 != 0;
-            let jmpfalse = op == OPJMPFALSE && v0 == 0;
-            if jmptrue || jmpfalse {
-                assert!(v1 >= 0);
-                index = v1 as usize;
-            } else {
-                index += 3
-            }
-        } else if op == OPLT || op == OPEQ {
-            let i0 = memory[index + 1];
-            let i1 = memory[index + 2];
-            let i2 = memory[index + 3];
-            let v0 = if mode0 == 1 { i0 } else { memory[i0 as usize] };
-            let v1 = if mode1 == 1 { i1 } else { memory[i1 as usize] };
-            let v2 = i2;
-            assert!(v2 >= 0);
-
-            let jmplt = op == OPLT && v0 < v1;
-            let jmpeq = op == OPEQ && v0 == v1;
-            if jmplt || jmpeq {
-                memory[v2 as usize] = 1;
-            } else {
-                memory[v2 as usize] = 0;
-            }
-            index += 4
-        } else if op == OPHALT {
-            halted = true;
-            break;
-        } else {
-            panic!("Invalid State");
-        }
-    }
-    return (memory, output_number, index, halted);
-}
-
 fn run_input_vec(memory: Vec<i64>, input_numbers: VecDeque<i64>) -> (Vec<i64>, i64) {
-    let (mem_new, output_number, _index, _halted) = run_continue(memory, input_numbers, 0);
-    return (mem_new, output_number);
+    let (mem_new, output_numbers, _index, _relative_base, _halted) =
+        intcode::run(memory, input_numbers, 0, 0);
+    return (mem_new, output_numbers[0]);
 }
 
 fn run_part_one(memory: Vec<i64>, thruster_inputs: [i64; 5]) -> i64 {
@@ -169,13 +54,14 @@ fn run_part_two(memory: Vec<i64>, thruster_inputs: [i64; 5]) -> i64 {
         let prev_thruster_id = (thruster_id + 5 - 1) % 5;
         input_numbers.push_back(outputs[prev_thruster_id]);
 
-        let (mem_new, output_number, position_new, halted) = run_continue(
+        let (mem_new, output_numbers, position_new, _relative_base, halted) = intcode::run(
             memories[thruster_id].clone(),
             input_numbers,
             positions[thruster_id],
+            0,
         );
 
-        outputs[thruster_id] = output_number;
+        outputs[thruster_id] = output_numbers[0];
 
         if halted && thruster_id == 4 {
             return outputs[4];
@@ -204,45 +90,19 @@ fn solve_part_two(memory: Vec<i64>) -> i64 {
 
 pub fn solve() {
     let input = common::read_file("2019/day07/input");
-    println!("Part one: {}", solve_part_one(parse_input(input.as_str())));
-    println!("Part two: {}", solve_part_two(parse_input(input.as_str())));
+    println!(
+        "Part one: {}",
+        solve_part_one(intcode::parse_input(input.as_str()))
+    );
+    println!(
+        "Part two: {}",
+        solve_part_two(intcode::parse_input(input.as_str()))
+    );
 }
 
 #[cfg(test)]
 mod tests {
     use super::*;
-
-    #[test]
-    fn test_samples_old() {
-        assert_eq!(
-            run_input_vec(
-                [1, 9, 10, 3, 2, 3, 11, 0, 99, 30, 40, 50].to_vec(),
-                VecDeque::from([0].to_vec())
-            )
-            .0,
-            [3500, 9, 10, 70, 2, 3, 11, 0, 99, 30, 40, 50].to_vec()
-        );
-        assert_eq!(
-            run_input_vec([1, 0, 0, 0, 99].to_vec(), VecDeque::from([0].to_vec())).0,
-            [2, 0, 0, 0, 99].to_vec()
-        );
-        assert_eq!(
-            run_input_vec([2, 3, 0, 3, 99].to_vec(), VecDeque::from([0].to_vec())).0,
-            [2, 3, 0, 6, 99].to_vec()
-        );
-        assert_eq!(
-            run_input_vec([2, 4, 4, 5, 99, 0].to_vec(), VecDeque::from([0].to_vec())).0,
-            [2, 4, 4, 5, 99, 9801].to_vec()
-        );
-        assert_eq!(
-            run_input_vec(
-                [1, 1, 1, 4, 99, 5, 6, 0, 99].to_vec(),
-                VecDeque::from([0].to_vec())
-            )
-            .0,
-            [30, 1, 1, 4, 2, 5, 6, 0, 99].to_vec()
-        );
-    }
 
     #[test]
     fn test_samples_old_0() {

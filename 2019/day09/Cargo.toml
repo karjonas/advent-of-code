@@ -5,4 +5,5 @@ authors = ["Jonas Karlsson <jonaskarlsson@fripost.org>"]
 
 [dependencies]
 common = { path = "../../common"}
-doubly = "*"
+intcode = { path = "../intcode"}
+
