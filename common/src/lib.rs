@@ -59,7 +59,7 @@ pub fn subsequences<T: Clone>(arr: &Vec<T>, index: usize, subarr: &Vec<T>) -> Ve
     return collected;
 }
 
-pub fn zeroed_vector(size: usize) -> Vec<(usize)> {
+pub fn zeroed_vector(size: usize) -> Vec<usize> {
     return filled_vector(size, 0);
 }
 
