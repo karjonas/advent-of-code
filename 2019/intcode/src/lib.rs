@@ -51,6 +51,14 @@ pub fn parse_input(input: &str) -> Vec<i64> {
         .collect::<Vec<_>>();
 }
 
+pub fn string_to_ascii(input: &str) -> Vec<i64> {
+    return input.chars().map(|v| v as u8 as i64).collect();
+}
+
+pub fn to_ascii(input: Vec<i64>) -> String {
+    return input.iter().map(|v| *v as u8 as char).collect(); //::<String>().replace("\n", "\r\n");
+}
+
 pub fn run(
     mut memory: Vec<i64>,
     mut input_numbers: VecDeque<i64>,
