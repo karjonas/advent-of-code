@@ -5,4 +5,4 @@ authors = ["Jonas Karlsson <jonaskarlsson@fripost.org>"]
 
 [dependencies]
 common = {path  = "../../common"}
-regex = "*"
+intcode = {path = "../intcode"}
