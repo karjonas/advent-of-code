@@ -1,20 +1,18 @@
 extern crate common;
 extern crate intcode;
 
-use std::collections::VecDeque;
-
-fn run_input_vec(memory: Vec<i64>, input_numbers: VecDeque<i64>) -> (Vec<i64>, Vec<i64>) {
+fn run_input_vec(memory: Vec<i64>, input_numbers: Vec<i64>) -> (Vec<i64>, Vec<i64>) {
     let (mem_new, output_numbers, _index, _relative_base, _halted) =
         intcode::run(memory, input_numbers, 0, 0);
     return (mem_new, output_numbers);
 }
 
 fn solve_part_one(memory: Vec<i64>) -> i64 {
-    let (_memory_out, output_numbers) = run_input_vec(memory, VecDeque::from([1].to_vec()));
+    let (_memory_out, output_numbers) = run_input_vec(memory, [1].to_vec());
     return output_numbers[0];
 }
 fn solve_part_two(memory: Vec<i64>) -> i64 {
-    let (_memory_out, output_numbers) = run_input_vec(memory, VecDeque::from([2].to_vec()));
+    let (_memory_out, output_numbers) = run_input_vec(memory, [2].to_vec());
     return output_numbers[0];
 }
 

@@ -2,7 +2,6 @@ extern crate common;
 extern crate intcode;
 
 use std::collections::HashSet;
-use std::collections::VecDeque;
 
 #[derive(Debug)]
 struct Computer {
@@ -33,12 +32,8 @@ fn solve_both(memory: Vec<i64>, is_first_problem: bool) -> usize {
     // init
     for i in 0..50 {
         let comp = computers.get_mut(i).unwrap();
-        let (memory_new, _output_numbers, index, relative_base, _halted) = intcode::run(
-            comp.memory.clone(),
-            VecDeque::from([comp.id as i64].to_vec()),
-            0,
-            0,
-        );
+        let (memory_new, _output_numbers, index, relative_base, _halted) =
+            intcode::run(comp.memory.clone(), [comp.id as i64].to_vec(), 0, 0);
         comp.memory = memory_new;
         comp.index = index;
         comp.relative_base = relative_base;
@@ -62,7 +57,7 @@ fn solve_both(memory: Vec<i64>, is_first_problem: bool) -> usize {
 
                 let (memory_new, output_numbers, index, relative_base, _halted) = intcode::run(
                     comp.memory.clone(),
-                    VecDeque::from([value].to_vec()),
+                    [value].to_vec(),
                     comp.index,
                     comp.relative_base,
                 );

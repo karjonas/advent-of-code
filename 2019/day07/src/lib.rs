@@ -1,9 +1,7 @@
 extern crate common;
 extern crate intcode;
 
-use std::collections::VecDeque;
-
-fn run_input_vec(memory: Vec<i64>, input_numbers: VecDeque<i64>) -> (Vec<i64>, i64) {
+fn run_input_vec(memory: Vec<i64>, input_numbers: Vec<i64>) -> (Vec<i64>, i64) {
     let (mem_new, output_numbers, _index, _relative_base, _halted) =
         intcode::run(memory, input_numbers, 0, 0);
     return (mem_new, output_numbers[0]);
@@ -14,7 +12,7 @@ fn run_part_one(memory: Vec<i64>, thruster_inputs: [i64; 5]) -> i64 {
     for thruster_input in &thruster_inputs {
         let (_memory, output_number) = run_input_vec(
             memory.clone(),
-            VecDeque::from([thruster_input.clone(), output_last].to_vec()),
+            [thruster_input.clone(), output_last].to_vec(),
         );
         output_last = output_number;
     }
@@ -47,12 +45,12 @@ fn run_part_two(memory: Vec<i64>, thruster_inputs: [i64; 5]) -> i64 {
         memory.clone(),
     ];
     loop {
-        let mut input_numbers = VecDeque::<i64>::new();
+        let mut input_numbers = Vec::<i64>::new();
         if first_run[thruster_id] {
-            input_numbers.push_back(thruster_inputs[thruster_id]);
+            input_numbers.push(thruster_inputs[thruster_id]);
         }
         let prev_thruster_id = (thruster_id + 5 - 1) % 5;
-        input_numbers.push_back(outputs[prev_thruster_id]);
+        input_numbers.push(outputs[prev_thruster_id]);
 
         let (mem_new, output_numbers, position_new, _relative_base, halted) = intcode::run(
             memories[thruster_id].clone(),

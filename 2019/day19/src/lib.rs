@@ -1,12 +1,10 @@
 extern crate common;
 extern crate intcode;
 
-use std::collections::VecDeque;
-
 fn is_hit(memory: Vec<i64>, x: usize, y: usize) -> bool {
     let (_memory_new, output_numbers, _index_new, _relative_base_new, _halted) = intcode::run(
         memory,
-        VecDeque::from([x as i64, y as i64].to_vec()),
+        [x as i64, y as i64].to_vec(),
         0,
         0,
     );

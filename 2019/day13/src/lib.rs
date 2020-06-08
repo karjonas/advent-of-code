@@ -2,7 +2,6 @@ extern crate common;
 extern crate intcode;
 
 use std::collections::HashMap;
-use std::collections::VecDeque;
 
 const TILE_EMPTY: i64 = 0;
 const TILE_WALL: i64 = 1;
@@ -11,7 +10,7 @@ const TILE_HORIZONTAL: i64 = 3;
 const TILE_BALL: i64 = 4;
 
 fn solve_part_one(memory: Vec<i64>) -> usize {
-    let (_, output_numbers, _, _, _) = intcode::run(memory.clone(), VecDeque::new(), 0, 0);
+    let (_, output_numbers, _, _, _) = intcode::run(memory.clone(), Vec::new(), 0, 0);
     let map = memory_to_tiles(output_numbers);
     let mut num_b = 0;
     for (_, v) in map {
@@ -94,9 +93,8 @@ fn solve_part_two(mut memory: Vec<i64>) -> usize {
     let mut next_dir = 0;
     let mut score;
     loop {
-        let input = VecDeque::from([next_dir].to_vec());
         let (memory_new, output_numbers, _, _, halted) =
-            intcode::run(memory.clone(), input.clone(), 0, 0);
+            intcode::run(memory.clone(), [next_dir].to_vec(), 0, 0);
         memory = memory_new;
 
         if debug {

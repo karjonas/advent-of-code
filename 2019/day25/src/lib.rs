@@ -3,12 +3,11 @@ extern crate intcode;
 
 use std::collections::BTreeSet;
 use std::collections::HashMap;
-use std::collections::VecDeque;
 
 #[derive(Debug, Clone)]
 struct State {
     memory: Vec<i64>,
-    input_numbers: VecDeque<i64>,
+    input_numbers: Vec<i64>,
     index: usize,
     relative_base: i64,
     position: String,
@@ -41,7 +40,7 @@ fn pickup(state: State, thing: String) -> State {
     let command = "take ".to_string() + thing.as_str() + "\n";
     let (memory_next, output_numbers, index_next, relative_base_next, _halted) = intcode::run(
         state.memory.clone(),
-        VecDeque::from(intcode::string_to_ascii(command.as_str())),
+        intcode::string_to_ascii(command.as_str()),
         state.index.clone(),
         state.relative_base.clone(),
     );
@@ -57,7 +56,7 @@ fn pickup(state: State, thing: String) -> State {
 fn run_input(state: State, input: String) -> State {
     let (memory_next, output_numbers, index_next, relative_base_next, _halted) = intcode::run(
         state.memory.clone(),
-        VecDeque::from(intcode::string_to_ascii(input.as_str())),
+        intcode::string_to_ascii(input.as_str()),
         state.index.clone(),
         state.relative_base.clone(),
     );
@@ -108,7 +107,7 @@ fn goto_place(start_state: State, network: &Network, destination: String) -> Sta
 
             let state_next = State {
                 memory: memory_next.clone(),
-                input_numbers: VecDeque::from(command),
+                input_numbers: command,
                 index: index_next,
                 relative_base: relative_base_next,
                 position: room.clone(),
@@ -127,7 +126,7 @@ fn goto_place(start_state: State, network: &Network, destination: String) -> Sta
 fn solve_part_one(memory: Vec<i64>, network: Network) -> usize {
     let mut state = State {
         memory: memory.clone(),
-        input_numbers: VecDeque::<i64>::new(),
+        input_numbers: Vec::new(),
         index: 0,
         relative_base: 0,
         position: START_AREA.to_string(),
@@ -199,7 +198,7 @@ fn create_network(memory: Vec<i64>) -> Network {
 
     stack.push(State {
         memory: memory.clone(),
-        input_numbers: VecDeque::<i64>::new(),
+        input_numbers: Vec::new(),
         index: 0,
         relative_base: 0,
         position: START_AREA.to_string(),
@@ -301,7 +300,7 @@ fn create_network(memory: Vec<i64>) -> Network {
             dir_fixed.push('\n');
             let state_next = State {
                 memory: memory_next.clone(),
-                input_numbers: VecDeque::from(intcode::string_to_ascii(dir_fixed.as_str())),
+                input_numbers: intcode::string_to_ascii(dir_fixed.as_str()),
                 index: index_next,
                 relative_base: relative_base_next,
                 position: name.clone(),

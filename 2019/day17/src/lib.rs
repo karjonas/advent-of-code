@@ -1,8 +1,6 @@
 extern crate common;
 extern crate intcode;
 
-use std::collections::VecDeque;
-
 fn sum_alignment(input: String) -> usize {
     let lines: Vec<Vec<char>> = input.lines().map(|value| value.chars().collect()).collect();
     let width = lines[0].len();
@@ -38,7 +36,7 @@ fn sum_alignment(input: String) -> usize {
 
 fn get_map(memory: Vec<i64>) -> String {
     let (_memory_new, output_numbers, _index, _relative_base, _halted) =
-        intcode::run(memory, VecDeque::new(), 0, 0);
+        intcode::run(memory, Vec::new(), 0, 0);
     let mut s = String::new();
     for number in output_numbers {
         s.push(number as u8 as char);
@@ -266,7 +264,7 @@ fn solve_part_two(memory_in: Vec<i64>) -> usize {
 
     for input in inputs {
         let (memory_new, output_numbers, index_new, relative_base_new, _halted) =
-            intcode::run(memory.clone(), VecDeque::from(input), index, relative_base);
+            intcode::run(memory.clone(), input.clone(), index, relative_base);
 
         index = index_new;
         relative_base = relative_base_new;

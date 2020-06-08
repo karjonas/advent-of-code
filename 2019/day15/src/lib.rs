@@ -71,7 +71,7 @@ fn build_map(memory: Vec<i64>) -> HashMap<Point, State> {
         {
             let (memory_new, output_numbers, index, relative_base, _halted) = intcode::run(
                 state.memory.clone(),
-                VecDeque::from([*dir].to_vec()),
+                [*dir].to_vec(),
                 state.index,
                 state.relative_base,
             );

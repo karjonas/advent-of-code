@@ -1,15 +1,9 @@
 extern crate common;
 extern crate intcode;
 
-use std::collections::VecDeque;
-
 fn run(memory: Vec<i64>, instrs: Vec<&str>) -> usize {
-    let (memory_new, _output_numbers, index, relative_base, _halted) = intcode::run(
-        memory,
-        VecDeque::new(),
-        0,
-        0,
-    );
+    let (memory_new, _output_numbers, index, relative_base, _halted) =
+        intcode::run(memory, Vec::new(), 0, 0);
 
     let input_str = instrs
         .iter()
@@ -18,12 +12,8 @@ fn run(memory: Vec<i64>, instrs: Vec<&str>) -> usize {
 
     let input = intcode::string_to_ascii(input_str.as_str());
 
-    let (_memory_new, output_numbers, _index, _relative_base, _halted) = intcode::run(
-        memory_new.clone(),
-        VecDeque::from(input),
-        index,
-        relative_base,
-    );
+    let (_memory_new, output_numbers, _index, _relative_base, _halted) =
+        intcode::run(memory_new.clone(), input, index, relative_base);
 
     return *output_numbers.last().unwrap() as usize;
 }

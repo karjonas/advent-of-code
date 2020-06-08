@@ -61,13 +61,14 @@ pub fn to_ascii(input: Vec<i64>) -> String {
 
 pub fn run(
     mut memory: Vec<i64>,
-    mut input_numbers: VecDeque<i64>,
+    input_numbers: Vec<i64>,
     mut index: usize,
     mut relative_base: i64,
 ) -> (Vec<i64>, Vec<i64>, usize, i64, bool) {
     let size = memory.len();
     let mut output_numbers = Vec::new();
     let mut halted = false;
+    let mut input_numbers_deque = VecDeque::from(input_numbers);
 
     while index < size {
         let op_raw = memory[index];
@@ -99,11 +100,11 @@ pub fn run(
             write_value(value, i2, mode2, relative_base, &mut memory);
             index += 4;
         } else if op == OPSTORE {
-            if input_numbers.is_empty() {
+            if input_numbers_deque.is_empty() {
                 break;
             }
             let i0 = memory[index + 1];
-            let value = input_numbers.pop_front().unwrap();
+            let value = input_numbers_deque.pop_front().unwrap();
             write_value(value, i0, mode0, relative_base, &mut memory);
             index += 2;
         } else if op == OPPRINT {

@@ -2,7 +2,6 @@ extern crate common;
 extern crate intcode;
 
 use std::collections::HashMap;
-use std::collections::VecDeque;
 
 const COLOR_BLACK: i64 = 0;
 const COLOR_WHITE: i64 = 1;
@@ -26,10 +25,8 @@ fn run_painter(mut memory: Vec<i64>, start_color: i64) -> HashMap<(i64, i64), i6
 
     loop {
         let color = color_pos.entry(pos).or_insert(COLOR_BLACK);
-        let mut input_numbers: VecDeque<i64> = VecDeque::new();
-        input_numbers.push_back(color.clone() as i64);
         let (mem_new, output_numbers, ptr_new, relative_base_new, halted) =
-            intcode::run(memory.clone(), input_numbers, ptr, relative_base);
+            intcode::run(memory.clone(), [*color as i64].to_vec(), ptr, relative_base);
         assert_eq!(output_numbers.len(), 2);
         let color_new = output_numbers[0];
         let turn = output_numbers[1];

@@ -1,12 +1,10 @@
 extern crate common;
 extern crate intcode;
 
-use std::collections::VecDeque;
-
 fn run_input(input_str: &str, input_number: i64) -> Vec<i64> {
     let memory = intcode::parse_input(input_str);
     let (_memory, output_numbers, _index, _relative_base, _halted) =
-        intcode::run(memory, VecDeque::from([input_number].to_vec()), 0, 0);
+        intcode::run(memory, [input_number].to_vec(), 0, 0);
     return output_numbers;
 }
 

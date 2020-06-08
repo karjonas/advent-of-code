@@ -1,8 +1,6 @@
 extern crate common;
 extern crate intcode;
 
-use std::collections::VecDeque;
-
 const GOAL: i64 = 19690720;
 
 fn run_input(input_str: &str, noun: i64, verb: i64) -> i64 {
@@ -10,7 +8,7 @@ fn run_input(input_str: &str, noun: i64, verb: i64) -> i64 {
     memory[1] = noun;
     memory[2] = verb;
     let (memory_new, _output_numbers, _index, _relative_base, _halted) =
-        intcode::run(memory, VecDeque::from([].to_vec()), 0, 0);
+        intcode::run(memory, Vec::new(), 0, 0);
     return memory_new[0];
 }
 
