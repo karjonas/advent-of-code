@@ -290,8 +290,7 @@ mod tests {
     #[test]
     fn example_a() {
         let input = ["#########", "#b.A.@.a#", "#########"].join("\n");
-        let grid = parse_input(input);
-        assert_eq!(solve_grid(grid), 8);
+        assert_eq!(solve_part_one(input), 8);
     }
 
     #[test]
@@ -304,8 +303,7 @@ mod tests {
             "########################",
         ]
         .join("\n");
-        let grid = parse_input(input);
-        assert_eq!(solve_grid(grid), 86);
+        assert_eq!(solve_part_one(input), 86);
     }
 
     #[test]
@@ -318,8 +316,7 @@ mod tests {
             "########################",
         ]
         .join("\n");
-        let grid = parse_input(input);
-        assert_eq!(solve_grid(grid), 132);
+        assert_eq!(solve_part_one(input), 132);
     }
 
     #[test]
@@ -336,8 +333,7 @@ mod tests {
             "#################",
         ]
         .join("\n");
-        let grid = parse_input(input);
-        assert_eq!(solve_grid(grid), 136);
+        assert_eq!(solve_part_one(input), 136);
     }
 
     #[test]
@@ -351,9 +347,7 @@ mod tests {
             "########################",
         ]
         .join("\n");
-
-        let grid = parse_input(input);
-        assert_eq!(solve_grid(grid), 81);
+        assert_eq!(solve_part_one(input), 81);
     }
 
     #[test]
@@ -368,9 +362,7 @@ mod tests {
             "#######", //
         ]
         .join("\n");
-
-        let grid = parse_input_p2(input);
-        assert_eq!(solve_grid_p2(grid), 8);
+        assert_eq!(solve_part_two(input), 8);
     }
     //
     #[test]
@@ -385,9 +377,7 @@ mod tests {
             "###############", //
         ]
         .join("\n");
-
-        let grid = parse_input_p2(input);
-        assert_eq!(solve_grid_p2(grid), 24);
+        assert_eq!(solve_part_two(input), 24);
     }
 
     #[test]
@@ -402,9 +392,7 @@ mod tests {
             "#############", //
         ]
         .join("\n");
-
-        let grid = parse_input_p2(input);
-        assert_eq!(solve_grid_p2(grid), 32);
+        assert_eq!(solve_part_two(input), 32);
     }
 
     #[test]
@@ -421,8 +409,6 @@ mod tests {
             "#############", //
         ]
         .join("\n");
-
-        let grid = parse_input_p2(input);
-        assert_eq!(solve_grid_p2(grid), 72);
+        assert_eq!(solve_part_two(input), 72);
     }
 }
