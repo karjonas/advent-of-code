@@ -23,7 +23,6 @@ struct UnitsState {
 #[derive(Debug, Clone)]
 struct MetaState {
     steps: usize,
-    visited: BTreeSet<char>,
     state: UnitsState,
     neighs: HashMap<char, HashMap<char, usize>>,
 }
@@ -202,7 +201,6 @@ fn solve_grid(grid_start: Grid, is_part_two: bool) -> usize {
     let mut stack = Vec::new();
     stack.push(MetaState {
         steps: 0,
-        visited: BTreeSet::new(),
         state: UnitsState {
             unit_pos: ['1', '2', '3', '4'],
             keys: BTreeSet::new(),
@@ -210,21 +208,13 @@ fn solve_grid(grid_start: Grid, is_part_two: bool) -> usize {
         neighs: neighs_start.clone(),
     });
 
-    let mut best_dist = 0;
-
     let mut visited_states = HashSet::new();
 
     while !stack.is_empty() {
         stack.sort_by(|a, b| b.steps.cmp(&a.steps));
 
-        let mut metastate = stack.pop().unwrap();
+        let metastate = stack.pop().unwrap();
         let steps = metastate.steps;
-
-        for unit in metastate.state.unit_pos.iter() {
-            if unit.is_ascii_lowercase() {
-                metastate.state.keys.insert(*unit);
-            }
-        }
 
         if visited_states.contains(&metastate.state) {
             continue;
@@ -233,8 +223,7 @@ fn solve_grid(grid_start: Grid, is_part_two: bool) -> usize {
         visited_states.insert(metastate.state.clone());
 
         if metastate.state.keys.len() == all_keys.len() {
-            best_dist = steps;
-            break;
+            return steps;
         }
 
         for i in 0..4 {
@@ -242,21 +231,29 @@ fn solve_grid(grid_start: Grid, is_part_two: bool) -> usize {
             let this_neighs = metastate.neighs.get(&unit).unwrap().clone();
 
             for (n_c, n_d) in &this_neighs {
-                // Door with key
-                if n_c.is_uppercase() && metastate.state.keys.contains(&n_c.to_ascii_lowercase()) {
-                    let mut metastate_next = metastate.clone();
-                    metastate_next.state.unit_pos[i] = n_c.clone();
-                    metastate_next.steps += n_d;
-                    metastate_next.neighs = delete_neigh(&metastate.neighs, unit);
-                    stack.push(metastate_next);
-                }
-                // key
-                if n_c.is_lowercase() {
-                    let mut metastate_next = metastate.clone();
-                    metastate_next.state.unit_pos[i] = n_c.clone();
-                    metastate_next.steps += n_d;
-                    metastate_next.neighs = delete_neigh(&metastate.neighs, unit);
-                    stack.push(metastate_next);
+                let is_door_with_key =
+                    n_c.is_uppercase() && metastate.state.keys.contains(&n_c.to_ascii_lowercase());
+                let is_key = n_c.is_lowercase();
+
+                if is_door_with_key || is_key {
+                    let mut state_next = metastate.state.clone();
+
+                    // Update unit
+                    state_next.unit_pos[i] = n_c.clone();
+                    // Add key
+                    if is_key {
+                        state_next.keys.insert(n_c.clone());
+                    }
+
+                    if visited_states.contains(&state_next) {
+                        continue;
+                    }
+
+                    stack.push(MetaState {
+                        steps: metastate.steps + n_d,
+                        state: state_next,
+                        neighs: delete_neigh(&metastate.neighs, unit),
+                    });
                 }
             }
 
@@ -266,7 +263,7 @@ fn solve_grid(grid_start: Grid, is_part_two: bool) -> usize {
         }
     }
 
-    return best_dist;
+    panic!("No solution found");
 }
 
 fn solve_part_one(input: String) -> usize {
