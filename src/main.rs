@@ -158,6 +158,9 @@ fn solve_day(year: usize, day: usize) {
             if year == 2019 {
                 year2019day01::solve();
             }
+            if year == 2020 {
+                year2020day01::solve();
+            }
         }
         2 => {
             if year == 2015 {
@@ -174,6 +177,9 @@ fn solve_day(year: usize, day: usize) {
             }
             if year == 2019 {
                 year2019day02::solve();
+            }
+            if year == 2020 {
+                year2020day02::solve();
             }
         }
         3 => {
@@ -192,6 +198,9 @@ fn solve_day(year: usize, day: usize) {
             if year == 2019 {
                 year2019day03::solve();
             }
+            if year == 2020 {
+                year2020day03::solve();
+            }
         }
         4 => {
             if year == 2015 {
@@ -208,6 +217,9 @@ fn solve_day(year: usize, day: usize) {
             }
             if year == 2019 {
                 year2019day04::solve();
+            }
+            if year == 2020 {
+                year2020day04::solve();
             }
         }
         5 => {
@@ -226,6 +238,9 @@ fn solve_day(year: usize, day: usize) {
             if year == 2019 {
                 year2019day05::solve();
             }
+            if year == 2020 {
+                year2020day05::solve();
+            }
         }
         6 => {
             if year == 2015 {
@@ -242,6 +257,9 @@ fn solve_day(year: usize, day: usize) {
             }
             if year == 2019 {
                 year2019day06::solve();
+            }
+            if year == 2020 {
+                year2020day06::solve();
             }
         }
         7 => {
@@ -260,6 +278,9 @@ fn solve_day(year: usize, day: usize) {
             if year == 2019 {
                 year2019day07::solve();
             }
+            if year == 2020 {
+                year2020day07::solve();
+            }
         }
         8 => {
             if year == 2015 {
@@ -276,6 +297,9 @@ fn solve_day(year: usize, day: usize) {
             }
             if year == 2019 {
                 year2019day08::solve();
+            }
+            if year == 2020 {
+                year2020day08::solve();
             }
         }
         9 => {
@@ -294,6 +318,9 @@ fn solve_day(year: usize, day: usize) {
             if year == 2019 {
                 year2019day09::solve();
             }
+            if year == 2020 {
+                year2020day09::solve();
+            }
         }
         10 => {
             if year == 2015 {
@@ -310,6 +337,9 @@ fn solve_day(year: usize, day: usize) {
             }
             if year == 2019 {
                 year2019day10::solve();
+            }
+            if year == 2020 {
+                year2020day10::solve();
             }
         }
         11 => {
@@ -328,6 +358,9 @@ fn solve_day(year: usize, day: usize) {
             if year == 2019 {
                 year2019day11::solve();
             }
+            if year == 2020 {
+                year2020day11::solve();
+            }
         }
         12 => {
             if year == 2015 {
@@ -344,6 +377,9 @@ fn solve_day(year: usize, day: usize) {
             }
             if year == 2019 {
                 year2019day12::solve();
+            }
+            if year == 2020 {
+                year2020day12::solve();
             }
         }
         13 => {
@@ -362,6 +398,9 @@ fn solve_day(year: usize, day: usize) {
             if year == 2019 {
                 year2019day13::solve();
             }
+            if year == 2020 {
+                year2020day13::solve();
+            }
         }
         14 => {
             if year == 2015 {
@@ -378,6 +417,9 @@ fn solve_day(year: usize, day: usize) {
             }
             if year == 2019 {
                 year2019day14::solve();
+            }
+            if year == 2020 {
+                year2020day14::solve();
             }
         }
         15 => {
@@ -396,6 +438,9 @@ fn solve_day(year: usize, day: usize) {
             if year == 2019 {
                 year2019day15::solve();
             }
+            if year == 2020 {
+                year2020day15::solve();
+            }
         }
         16 => {
             if year == 2015 {
@@ -412,6 +457,9 @@ fn solve_day(year: usize, day: usize) {
             }
             if year == 2019 {
                 year2019day16::solve();
+            }
+            if year == 2020 {
+                year2020day16::solve();
             }
         }
         17 => {
@@ -430,6 +478,9 @@ fn solve_day(year: usize, day: usize) {
             if year == 2019 {
                 year2019day17::solve();
             }
+            if year == 2020 {
+                year2020day17::solve();
+            }
         }
         18 => {
             if year == 2015 {
@@ -446,6 +497,9 @@ fn solve_day(year: usize, day: usize) {
             }
             if year == 2019 {
                 year2019day18::solve();
+            }
+            if year == 2020 {
+                year2020day18::solve();
             }
         }
         19 => {
@@ -464,6 +518,9 @@ fn solve_day(year: usize, day: usize) {
             if year == 2019 {
                 year2019day19::solve();
             }
+            if year == 2020 {
+                year2020day19::solve();
+            }
         }
         20 => {
             if year == 2015 {
@@ -480,6 +537,9 @@ fn solve_day(year: usize, day: usize) {
             }
             if year == 2019 {
                 year2019day20::solve();
+            }
+            if year == 2020 {
+                year2020day20::solve();
             }
         }
         21 => {
@@ -498,6 +558,9 @@ fn solve_day(year: usize, day: usize) {
             if year == 2019 {
                 year2019day21::solve();
             }
+            if year == 2020 {
+                year2020day21::solve();
+            }
         }
         22 => {
             if year == 2015 {
@@ -514,6 +577,9 @@ fn solve_day(year: usize, day: usize) {
             }
             if year == 2019 {
                 year2019day22::solve();
+            }
+            if year == 2020 {
+                year2020day22::solve();
             }
         }
         23 => {
@@ -532,6 +598,9 @@ fn solve_day(year: usize, day: usize) {
             if year == 2019 {
                 year2019day23::solve();
             }
+            if year == 2020 {
+                year2020day23::solve();
+            }
         }
         24 => {
             if year == 2015 {
@@ -549,6 +618,9 @@ fn solve_day(year: usize, day: usize) {
             if year == 2019 {
                 year2019day24::solve();
             }
+            if year == 2020 {
+                year2020day24::solve();
+            }
         }
         25 => {
             if year == 2015 {
@@ -565,6 +637,9 @@ fn solve_day(year: usize, day: usize) {
             }
             if year == 2019 {
                 year2019day25::solve();
+            }
+            if year == 2020 {
+                year2020day25::solve();
             }
         }
         _ => {}
@@ -604,7 +679,7 @@ fn main() {
     let year = if common::is_number(year_str) {
         common::string_to_usize(year_str)
     } else {
-        2019
+        2020
     };
 
     if day > 25 {
@@ -612,7 +687,7 @@ fn main() {
         std::process::exit(-1);
     }
 
-    if year > 2019 || year < 2015 {
+    if year > 2020 || year < 2015 {
         println!("Invalid year '{}'", year);
         std::process::exit(-1);
     }
