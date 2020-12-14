@@ -6,14 +6,6 @@ struct Moon {
     vel: [i64; 3],
 }
 
-fn gcd(a: usize, b: usize) -> usize {
-    return if b == 0 { a } else { gcd(b, a % b) };
-}
-
-fn lcm(a: usize, b: usize) -> usize {
-    return a * b / gcd(a, b);
-}
-
 fn abs(value: [i64; 3]) -> i64 {
     return value[0].abs() + value[1].abs() + value[2].abs();
 }
@@ -114,9 +106,9 @@ pub fn solve() {
             repeats[i] = ctr;
         }
 
-        part_two = lcm(
-            repeats[2] as usize,
-            lcm(repeats[0] as usize, repeats[1] as usize),
+        part_two = common::lcm(
+            repeats[2] as i128,
+            common::lcm(repeats[0] as i128, repeats[1] as i128),
         );
     }
     println!("Part one: {:?}", part_one);

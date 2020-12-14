@@ -18,37 +18,6 @@ fn parse_input(input: &String) -> PuzzleInput {
     };
 }
 
-fn egcd(a: i128, b: i128) -> (i128, i128, i128) {
-    if a == 0 {
-        (b, 0, 1)
-    } else {
-        let (g, x, y) = egcd(b % a, a);
-        (g, y - (b / a) * x, x)
-    }
-}
-
-fn mod_inv(x: i128, n: i128) -> Option<i128> {
-    let (g, x, _) = egcd(x, n);
-    if g == 1 {
-        Some((x % n + n) % n)
-    } else {
-        None
-    }
-}
-
-fn chinese_remainder(residues: &[i128], modulii: &[i128]) -> Option<i128> {
-    let prod = modulii.iter().product::<i128>();
-
-    let mut sum = 0;
-
-    for (&residue, &modulus) in residues.iter().zip(modulii) {
-        let p = prod / modulus;
-        sum += residue * mod_inv(p, modulus)? * p
-    }
-
-    Some(sum % prod)
-}
-
 fn part_one(input: &PuzzleInput) -> usize {
     let mut result = std::usize::MAX;
     let mut best = std::usize::MAX;
@@ -79,12 +48,7 @@ fn part_two(input: &PuzzleInput) -> usize {
         residues.push((time - (i % time)) as i128);
     }
 
-    match chinese_remainder(&residues.as_slice(), &modulii.as_slice()) {
-        Some(sol) => return sol as usize,
-        None => println!("modulii not pairwise coprime"),
-    }
-
-    panic!("No solution found");
+    return common::chinese_remainder(&residues.as_slice(), &modulii.as_slice()).unwrap() as usize;
 }
 
 pub fn solve() {

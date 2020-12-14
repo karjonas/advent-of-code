@@ -130,3 +130,38 @@ pub fn grow<T: Clone>(vec: &mut Vec<T>, size: usize, default_value: T) {
         vec.resize(size, default_value);
     }
 }
+
+pub fn egcd(a: i128, b: i128) -> (i128, i128, i128) {
+    if a == 0 {
+        (b, 0, 1)
+    } else {
+        let (g, x, y) = egcd(b % a, a);
+        (g, y - (b / a) * x, x)
+    }
+}
+
+pub fn lcm(a: i128, b: i128) -> i128 {
+    return a * b / egcd(a, b).0;
+}
+
+fn mod_inv(x: i128, n: i128) -> Option<i128> {
+    let (g, x, _) = egcd(x, n);
+    if g == 1 {
+        Some((x % n + n) % n)
+    } else {
+        None
+    }
+}
+
+pub fn chinese_remainder(residues: &[i128], modulii: &[i128]) -> Option<i128> {
+    let prod = modulii.iter().product::<i128>();
+
+    let mut sum = 0;
+
+    for (&residue, &modulus) in residues.iter().zip(modulii) {
+        let p = prod / modulus;
+        sum += residue * mod_inv(p, modulus)? * p
+    }
+
+    Some(sum % prod)
+}
