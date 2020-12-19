@@ -54,13 +54,7 @@ fn parse_input(input: &String) -> (RuleMap, Vec<String>) {
     return (rules, messages);
 }
 
-fn valid(
-    rules: &RuleMap,
-    message: &Vec<char>,
-    idx: usize,
-    rule: &Rule,
-    depth: usize,
-) -> (bool, usize) {
+fn valid(rules: &RuleMap, message: &Vec<char>, idx: usize, rule: &Rule) -> (bool, usize) {
     if idx >= message.len() {
         return (false, 0);
     }
@@ -74,13 +68,8 @@ fn valid(
         let mut idx_curr = idx;
         let mut ok = true;
         for rule_next_idx in rules_curr {
-            let (success, next_idx) = valid(
-                rules,
-                message,
-                idx_curr,
-                rules.get(rule_next_idx).unwrap(),
-                depth + 1,
-            );
+            let (success, next_idx) =
+                valid(rules, message, idx_curr, rules.get(rule_next_idx).unwrap());
             idx_curr = next_idx;
 
             if !success {
@@ -107,7 +96,6 @@ fn part_one(input: &String) -> usize {
             &message.chars().collect(),
             0,
             &rules.get(&0).unwrap(),
-            0,
         );
 
         let matched = ok && idx == message.len();
