@@ -165,3 +165,7 @@ pub fn chinese_remainder(residues: &[i128], modulii: &[i128]) -> Option<i128> {
 
     Some(sum % prod)
 }
+
+pub fn flatten<T>(nested: Vec<Vec<T>>) -> Vec<T> {
+    nested.into_iter().flatten().collect()
+}
