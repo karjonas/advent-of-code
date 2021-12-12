@@ -2,7 +2,6 @@ extern crate common;
 
 #[derive(Debug, Clone)]
 struct Ingredient {
-    name: String,
     capacity: i64,
     durability: i64,
     flavor: i64,
@@ -43,7 +42,6 @@ fn solve_internal(input: &String) -> (usize, usize) {
 
         // Sprinkles: capacity 5, durability -1, flavor 0, texture 0, calories 5
         let ingredient = Ingredient {
-            name: words[0].clone(),
             capacity: common::string_to_i64(words[2].as_str()),
             durability: common::string_to_i64(words[4].as_str()),
             flavor: common::string_to_i64(words[6].as_str()),

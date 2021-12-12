@@ -16,8 +16,6 @@ struct State {
 #[derive(Debug, Clone)]
 struct Portal {
     name: String,
-    x: usize,
-    y: usize,
     start_x: usize,
     start_y: usize,
     is_inner: bool,
@@ -53,8 +51,6 @@ fn find_portals(grid: &Grid) -> Vec<Portal> {
                 if c_up == '.' {
                     portals.push(Portal {
                         name: name,
-                        x: x,
-                        y: y,
                         start_x: x,
                         start_y: y - 1,
                         is_inner: is_inner,
@@ -62,8 +58,6 @@ fn find_portals(grid: &Grid) -> Vec<Portal> {
                 } else if c_down_down == '.' {
                     portals.push(Portal {
                         name: name,
-                        x: x,
-                        y: y + 1,
                         start_x: x,
                         start_y: y + 2,
                         is_inner: is_inner,
@@ -76,8 +70,6 @@ fn find_portals(grid: &Grid) -> Vec<Portal> {
                 if c_left == '.' {
                     portals.push(Portal {
                         name: name,
-                        x: x,
-                        y: y,
                         start_x: x - 1,
                         start_y: y,
                         is_inner: is_inner,
@@ -85,8 +77,6 @@ fn find_portals(grid: &Grid) -> Vec<Portal> {
                 } else if c_right_right == '.' {
                     portals.push(Portal {
                         name: name,
-                        x: x + 1,
-                        y: y,
                         start_x: x + 2,
                         start_y: y,
                         is_inner: is_inner,

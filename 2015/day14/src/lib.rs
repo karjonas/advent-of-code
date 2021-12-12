@@ -2,7 +2,6 @@ extern crate common;
 
 #[derive(Debug)]
 struct Reindeer {
-    name: String,
     speed: usize,
     endurance: usize,
     rest: usize,
@@ -14,7 +13,6 @@ fn parse(input: &String) -> Vec<Reindeer> {
         let words = line.split_whitespace().collect::<Vec<_>>();
         // Vixen can fly 8 km/s for 8 seconds, but then must rest for 53 seconds.
         let r = Reindeer {
-            name: words[0].to_string(),
             speed: common::string_to_usize(words[3]),
             endurance: common::string_to_usize(words[6]),
             rest: common::string_to_usize(words[13]),

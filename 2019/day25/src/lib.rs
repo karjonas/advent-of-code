@@ -12,7 +12,6 @@ struct State {
     relative_base: i64,
     position: String,
     command: String,
-    previous: String,
     output: String,
 }
 
@@ -112,7 +111,6 @@ fn goto_place(start_state: State, network: &Network, destination: String) -> Sta
                 relative_base: relative_base_next,
                 position: room.clone(),
                 command: direction.clone(),
-                previous: state.position.clone(),
                 output: s.clone(),
             };
 
@@ -131,7 +129,6 @@ fn solve_part_one(memory: Vec<i64>, network: Network) -> usize {
         relative_base: 0,
         position: START_AREA.to_string(),
         command: String::new(),
-        previous: String::new(),
         output: String::new(),
     };
 
@@ -203,7 +200,6 @@ fn create_network(memory: Vec<i64>) -> Network {
         relative_base: 0,
         position: START_AREA.to_string(),
         command: String::new(),
-        previous: String::new(),
         output: String::new(),
     });
 
@@ -305,7 +301,6 @@ fn create_network(memory: Vec<i64>) -> Network {
                 relative_base: relative_base_next,
                 position: name.clone(),
                 command: dir_fixed.clone(),
-                previous: state.position.clone(),
                 output: String::new(),
             };
 
