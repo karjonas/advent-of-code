@@ -186,5 +186,30 @@ year2021day23 = { path = "2021/day23" }
 year2021day24 = { path = "2021/day24" }
 year2021day25 = { path = "2021/day25" }
 
-clap = "*"
+year2022day01 = { path = "2022/day01" }
+year2022day02 = { path = "2022/day02" }
+year2022day03 = { path = "2022/day03" }
+year2022day04 = { path = "2022/day04" }
+year2022day05 = { path = "2022/day05" }
+year2022day06 = { path = "2022/day06" }
+year2022day07 = { path = "2022/day07" }
+year2022day08 = { path = "2022/day08" }
+year2022day09 = { path = "2022/day09" }
+year2022day10 = { path = "2022/day10" }
+year2022day11 = { path = "2022/day11" }
+year2022day12 = { path = "2022/day12" }
+year2022day13 = { path = "2022/day13" }
+year2022day14 = { path = "2022/day14" }
+year2022day15 = { path = "2022/day15" }
+year2022day16 = { path = "2022/day16" }
+year2022day17 = { path = "2022/day17" }
+year2022day18 = { path = "2022/day18" }
+year2022day19 = { path = "2022/day19" }
+year2022day20 = { path = "2022/day20" }
+year2022day21 = { path = "2022/day21" }
+year2022day22 = { path = "2022/day22" }
+year2022day23 = { path = "2022/day23" }
+year2022day24 = { path = "2022/day24" }
+year2022day25 = { path = "2022/day25" }
+argh = "0.1.9"
 common = {path = "common"}
