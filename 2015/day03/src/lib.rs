@@ -10,7 +10,7 @@ fn solve_internal(s: &str, with_robot: bool) -> usize {
     let mut santa_move = true;
 
     for c in s.chars() {
-        let mut pos: &mut (i64, i64) = if with_robot && !santa_move {
+        let pos: &mut (i64, i64) = if with_robot && !santa_move {
             &mut pos_robot
         } else {
             &mut pos_santa

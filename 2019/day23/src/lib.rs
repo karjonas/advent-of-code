@@ -52,7 +52,7 @@ fn solve_both(memory: Vec<i64>, is_first_problem: bool) -> usize {
             };
 
             for value in inputs {
-                let mut comp = computers.get_mut(i).unwrap();
+                let comp = computers.get_mut(i).unwrap();
                 comp.input.clear();
 
                 let (memory_new, output_numbers, index, relative_base, _halted) = intcode::run(

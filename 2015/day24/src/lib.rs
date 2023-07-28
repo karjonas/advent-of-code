@@ -11,9 +11,9 @@ fn calc_qe(numbers: &Vec<usize>, num_groups: usize) -> usize {
     let mut min_quantum = std::usize::MAX;
     for group_size in 1.. {
         for group in numbers.iter().combinations(group_size) {
-            if group.iter().fold(0, |sum, v| sum + v.clone()) == goal {
+            if group.iter().fold(0, |sum, v| sum + *v) == goal {
                 min_quantum =
-                    std::cmp::min(group.iter().fold(1, |sum, v| sum * v.clone()), min_quantum);
+                    std::cmp::min(group.iter().fold(1, |sum, v| sum * (*v)), min_quantum);
             }
         }
         if min_quantum != std::usize::MAX {
