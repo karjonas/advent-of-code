@@ -258,6 +258,38 @@ fn solve_year_2022(day: usize) {
     println!("");
 }
 
+fn solve_year_2023(day: usize) {
+    match day {
+        1 => year2023day01::solve(),
+        2 => year2023day02::solve(),
+        3 => year2023day03::solve(),
+        4 => year2023day04::solve(),
+        5 => year2023day05::solve(),
+        6 => year2023day06::solve(),
+        7 => year2023day07::solve(),
+        8 => year2023day08::solve(),
+        9 => year2023day09::solve(),
+        10 => year2023day10::solve(),
+        11 => year2023day11::solve(),
+        12 => year2023day12::solve(),
+        13 => year2023day13::solve(),
+        14 => year2023day14::solve(),
+        15 => year2023day15::solve(),
+        16 => year2023day16::solve(),
+        17 => year2023day17::solve(),
+        18 => year2023day18::solve(),
+        19 => year2023day19::solve(),
+        20 => year2023day20::solve(),
+        21 => year2023day21::solve(),
+        22 => year2023day22::solve(),
+        23 => year2023day23::solve(),
+        24 => year2023day24::solve(),
+        25 => year2023day25::solve(),
+        _ => {}
+    }
+    println!("");
+}
+
 fn solve_day(year: usize, day: usize) {
     println!("== Year {} Day {:02} ==", year, day);
     match year {
@@ -269,6 +301,7 @@ fn solve_day(year: usize, day: usize) {
         2020 => solve_year_2020(day),
         2021 => solve_year_2021(day),
         2022 => solve_year_2022(day),
+        2023 => solve_year_2023(day),
         _ => {}
     }
     println!("");
@@ -278,7 +311,7 @@ fn solve_day(year: usize, day: usize) {
 /// Advent of Code solutions by Jonas Karlsson
 struct AoCArgs {
     /// year to solve
-    #[argh(option, short = 'y', default = "2022")]
+    #[argh(option, short = 'y', default = "2023")]
     year: usize,
 
     /// day to solve
@@ -296,7 +329,7 @@ fn main() {
         std::process::exit(-1);
     }
 
-    if year > 2022 || year < 2015 {
+    if year > 2023 || year < 2015 {
         println!("Invalid year '{}'", year);
         std::process::exit(-1);
     }

@@ -1,0 +1,8 @@
+[package]
+name = "year2023day05"
+version = "0.1.0"
+authors = ["Jonas Karlsson <jonaskarlsson@fripost.org>"]
+
+[dependencies]
+common = {path = "../../common" }
+scan_fmt = "*"
