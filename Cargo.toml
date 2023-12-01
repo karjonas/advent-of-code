@@ -211,5 +211,5 @@ year2022day22 = { path = "2022/day22" }
 year2022day23 = { path = "2022/day23" }
 year2022day24 = { path = "2022/day24" }
 year2022day25 = { path = "2022/day25" }
-argh = "0.1.9"
+argh = "0.1.10"
 common = {path = "common"}

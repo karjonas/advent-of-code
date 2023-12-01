@@ -14,7 +14,7 @@ pub fn solve() {
         .split('\n')
         .map(|line| {
             line.split(' ')
-                .filter(|v| v.clone() != "<->")
+                .filter(|v| *v != "<->")
                 .map(|v| v.parse::<usize>().unwrap())
                 .collect()
         })
