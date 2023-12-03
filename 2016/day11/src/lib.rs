@@ -1,6 +1,3 @@
-#[macro_use]
-extern crate bitflags;
-
 use std::collections::HashMap;
 use std::collections::HashSet;
 use std::collections::VecDeque;
@@ -13,74 +10,82 @@ const NUM_TOT: usize = 14;
 #[derive(PartialEq, PartialOrd, Clone, Eq, Hash)]
 struct SolveState {
     curr_floor: u8,
-    rtgs: [RTGFlag; NUM_FLOORS],
+    rtgs: [usize; NUM_FLOORS],
 }
 
-bitflags! {
-    struct RTGFlag: usize {
-        const CHIP_A       = 0b00000000000001;
-        const CHIP_B       = 0b00000000000010;
-        const CHIP_C       = 0b00000000000100;
-        const CHIP_D       = 0b00000000001000;
-        const CHIP_E       = 0b00000000010000;
-        const CHIP_F       = 0b00000000100000;
-        const CHIP_G       = 0b00000001000000;
-        const GENERATOR_A  = 0b00000010000000;
-        const GENERATOR_B  = 0b00000100000000;
-        const GENERATOR_C  = 0b00001000000000;
-        const GENERATOR_D  = 0b00010000000000;
-        const GENERATOR_E  = 0b00100000000000;
-        const GENERATOR_F  = 0b01000000000000;
-        const GENERATOR_G  = 0b10000000000000;
-    }
+const CHIP_A: usize = 0b00000000000001;
+const CHIP_B: usize = 0b00000000000010;
+const CHIP_C: usize = 0b00000000000100;
+const CHIP_D: usize = 0b00000000001000;
+const CHIP_E: usize = 0b00000000010000;
+const CHIP_F: usize = 0b00000000100000;
+const CHIP_G: usize = 0b00000001000000;
+const GENERATOR_A: usize = 0b00000010000000;
+const GENERATOR_B: usize = 0b00000100000000;
+const GENERATOR_C: usize = 0b00001000000000;
+const GENERATOR_D: usize = 0b00010000000000;
+const GENERATOR_E: usize = 0b00100000000000;
+const GENERATOR_F: usize = 0b01000000000000;
+const GENERATOR_G: usize = 0b10000000000000;
+
+fn is_bit_set(rtg: usize, flag: usize) -> bool {
+    return (rtg & flag) > 0;
 }
 
-fn all_on_last_floor(rtgs: &[RTGFlag; NUM_FLOORS]) -> bool {
+fn unset_bit(rtg: usize, flag: usize) -> usize {
+    return rtg & !flag;
+}
+
+fn set_bit(rtg: usize, flag: usize) -> usize {
+    return rtg | flag;
+}
+
+fn all_on_last_floor(rtgs: &[usize; NUM_FLOORS]) -> bool {
     for i in 0..NUM_FLOORS - 1 {
-        if !rtgs[i].is_empty() {
+        if rtgs[i] > 0 {
             return false;
         }
     }
     return true;
 }
 
-fn floor_ok(rtgs: RTGFlag) -> bool {
-    let all_gens = RTGFlag::GENERATOR_A
-        | RTGFlag::GENERATOR_B
-        | RTGFlag::GENERATOR_C
-        | RTGFlag::GENERATOR_D
-        | RTGFlag::GENERATOR_E
-        | RTGFlag::GENERATOR_F
-        | RTGFlag::GENERATOR_G;
-    let has_generator = !(rtgs & all_gens).is_empty();
+fn floor_ok(rtgs: usize) -> bool {
+    let all_gens = GENERATOR_A
+        | GENERATOR_B
+        | GENERATOR_C
+        | GENERATOR_D
+        | GENERATOR_E
+        | GENERATOR_F
+        | GENERATOR_G;
+    let has_generator = (rtgs & all_gens) > 0;
 
     return !has_generator
-        || !((rtgs.contains(RTGFlag::CHIP_A) && !rtgs.contains(RTGFlag::GENERATOR_A))
-            || (rtgs.contains(RTGFlag::CHIP_B) && !rtgs.contains(RTGFlag::GENERATOR_B))
-            || (rtgs.contains(RTGFlag::CHIP_C) && !rtgs.contains(RTGFlag::GENERATOR_C))
-            || (rtgs.contains(RTGFlag::CHIP_D) && !rtgs.contains(RTGFlag::GENERATOR_D))
-            || (rtgs.contains(RTGFlag::CHIP_E) && !rtgs.contains(RTGFlag::GENERATOR_E))
-            || (rtgs.contains(RTGFlag::CHIP_F) && !rtgs.contains(RTGFlag::GENERATOR_F))
-            || (rtgs.contains(RTGFlag::CHIP_G) && !rtgs.contains(RTGFlag::GENERATOR_G)));
+        || !((is_bit_set(rtgs, CHIP_A) && !is_bit_set(rtgs, GENERATOR_A))
+            || (is_bit_set(rtgs, CHIP_B) && !is_bit_set(rtgs, GENERATOR_B))
+            || (is_bit_set(rtgs, CHIP_C) && !is_bit_set(rtgs, GENERATOR_C))
+            || (is_bit_set(rtgs, CHIP_D) && !is_bit_set(rtgs, GENERATOR_D))
+            || (is_bit_set(rtgs, CHIP_E) && !is_bit_set(rtgs, GENERATOR_E))
+            || (is_bit_set(rtgs, CHIP_F) && !is_bit_set(rtgs, GENERATOR_F))
+            || (is_bit_set(rtgs, CHIP_G) && !is_bit_set(rtgs, GENERATOR_G)));
 }
 
 fn try_move_objects(
     last_floor: u8,
-    index: (RTGFlag, RTGFlag),
+    index: (usize, usize),
     new_floor: u8,
     curr_state: &SolveState,
 ) -> Option<SolveState> {
     let mut left_floor = curr_state.rtgs[last_floor as usize];
-    left_floor.remove(index.0);
-    left_floor.remove(index.1);
+    left_floor = unset_bit(left_floor, index.0);
+    left_floor = unset_bit(left_floor, index.1);
 
     if !floor_ok(left_floor) {
         return None;
     }
 
     let mut next_floor = curr_state.rtgs[new_floor as usize];
-    next_floor.insert(index.0);
-    next_floor.insert(index.1);
+    next_floor = set_bit(next_floor, index.0);
+    next_floor = set_bit(next_floor, index.1);
 
     if !floor_ok(next_floor) {
         return None;
@@ -104,11 +109,11 @@ fn get_next_states(
     let floor_rtgs = curr_state.rtgs[curr_state.curr_floor as usize];
 
     for i in 0..NUM_TOT {
-        let obj = RTGFlag::from_bits(1 << i).unwrap();
-        if floor_rtgs.contains(obj) {
+        let obj = 1 << i;
+        if is_bit_set(floor_rtgs, obj) {
             for j in i..NUM_TOT {
-                let obj1 = RTGFlag::from_bits(1 << j).unwrap();
-                if floor_rtgs.contains(obj1) {
+                let obj1 = 1 << j;
+                if is_bit_set(floor_rtgs, obj1) {
                     if curr_state.curr_floor < 3 {
                         let state = try_move_objects(
                             curr_state.curr_floor,
@@ -140,7 +145,7 @@ fn get_next_states(
     }
 }
 
-fn solve_brute(rtgs: [RTGFlag; NUM_FLOORS]) -> usize {
+fn solve_brute(rtgs: [usize; NUM_FLOORS]) -> usize {
     let mut states: VecDeque<(usize, SolveState)> = VecDeque::new();
     let mut visited_states = HashSet::new();
 
@@ -189,7 +194,7 @@ fn solve_internal(input_str: &str) -> usize {
         .collect();
 
     let mut hm = HashMap::new();
-    let mut rtgs = [RTGFlag::empty(); NUM_FLOORS];
+    let mut rtgs = [0; NUM_FLOORS];
     let mut floor = 0;
     for line in line_words {
         for word_idx in 2..line.len() {
@@ -198,14 +203,14 @@ fn solve_internal(input_str: &str) -> usize {
                 let l = hm.len();
                 let idx = hm.entry(elem).or_insert(l).clone();
                 assert!(idx < NUM_TOT / 2);
-                let obj = RTGFlag::from_bits(1 << (idx)).unwrap();
+                let obj = 1 << idx;
                 rtgs[floor] = rtgs[floor] | obj;
             } else if line[word_idx] == "generator" {
                 let elem = line[word_idx - 1].clone();
                 let l = hm.len();
                 let idx = hm.entry(elem).or_insert(l).clone();
                 assert!(idx < NUM_TOT / 2);
-                let obj = RTGFlag::from_bits(1 << (idx + NUM_TOT / 2)).unwrap();
+                let obj = 1 << (idx + NUM_TOT / 2);
                 rtgs[floor] = rtgs[floor] | obj
             }
         }
