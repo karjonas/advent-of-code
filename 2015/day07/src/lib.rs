@@ -151,14 +151,26 @@ fn part_two(input: &str) -> usize {
     return *hm.get("a").unwrap() as usize;
 }
 
-pub fn solve() {
+pub fn solve(filepath: &str) {
     println!(
         "Part one: {}",
-        part_one(common::read_file("2015/day07/input").as_str())
+        part_one(
+            std::fs::read_to_string(filepath)
+                .unwrap()
+                .trim()
+                .to_string()
+                .as_str()
+        )
     );
     println!(
         "Part two: {}",
-        part_two(common::read_file("2015/day07/input").as_str())
+        part_two(
+            std::fs::read_to_string(filepath)
+                .unwrap()
+                .trim()
+                .to_string()
+                .as_str()
+        )
     );
 }
 
@@ -183,5 +195,4 @@ mod tests {
 
     #[test]
     fn test_samples_part_two() {}
-
 }

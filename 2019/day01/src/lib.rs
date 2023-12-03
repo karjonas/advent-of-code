@@ -16,15 +16,27 @@ fn solve_internal(input: String, recurse: bool) -> usize {
         .sum();
 }
 
-pub fn solve() {
+pub fn solve(filepath: &str) {
     println!(
         "Part one: {}",
-        solve_internal(common::read_file("2019/day01/input"), false)
+        solve_internal(
+            std::fs::read_to_string(filepath)
+                .unwrap()
+                .trim()
+                .to_string(),
+            false
+        )
     );
 
     println!(
         "Part two: {}",
-        solve_internal(common::read_file("2019/day01/input"), true)
+        solve_internal(
+            std::fs::read_to_string(filepath)
+                .unwrap()
+                .trim()
+                .to_string(),
+            true
+        )
     );
 }
 

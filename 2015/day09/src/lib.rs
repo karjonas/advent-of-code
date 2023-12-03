@@ -72,15 +72,27 @@ fn solve_internal(input: String, part_one: bool) -> usize {
     return best_dist;
 }
 
-pub fn solve() {
+pub fn solve(filepath: &str) {
     println!(
         "Part one: {}",
-        solve_internal(common::read_file("2015/day09/input"), true)
+        solve_internal(
+            std::fs::read_to_string(filepath)
+                .unwrap()
+                .trim()
+                .to_string(),
+            true
+        )
     );
 
     println!(
         "Part two: {}",
-        solve_internal(common::read_file("2015/day09/input"), false)
+        solve_internal(
+            std::fs::read_to_string(filepath)
+                .unwrap()
+                .trim()
+                .to_string(),
+            false
+        )
     );
 }
 

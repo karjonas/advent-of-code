@@ -20,7 +20,7 @@ fn fill_recursive(island: usize, row: usize, col: usize, grid: &mut Vec<Vec<usiz
     }
 }
 
-pub fn solve() {
+pub fn solve(_filepath: &str) {
     let mut accum = 0;
     let mut grid = vec![vec![0; GRID_SZ]; GRID_SZ];
 

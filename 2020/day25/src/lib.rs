@@ -31,8 +31,11 @@ fn part_one(input: &Input) -> usize {
     return encrypt_subject(input.0, find_loop_size(input.1));
 }
 
-pub fn solve() {
-    let input = common::read_file("2020/day25/input");
+pub fn solve(filepath: &str) {
+    let input = std::fs::read_to_string(filepath)
+        .unwrap()
+        .trim_end_matches('\n')
+        .to_string();
     println!("Part one: {}", part_one(&parse_input(&input)));
 }
 

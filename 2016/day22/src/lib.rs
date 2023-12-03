@@ -1,6 +1,3 @@
-use std::fs::File;
-use std::io::prelude::*;
-
 const W: usize = 35;
 const H: usize = 29;
 
@@ -15,19 +12,16 @@ struct State {
     dist: [[usize; H]; W],
 }
 
-fn parse_solve(path: &str) -> (usize, usize) {
+fn parse_solve(input: &String) -> (usize, usize) {
     let mut out = State {
         arr: [[Node { used: 0, avail: 0 }; H]; W],
         dist: [[std::usize::MAX; H]; W],
     };
-    let mut file = File::open(path).unwrap();
-    let mut contents = String::new();
-    file.read_to_string(&mut contents).unwrap();
     let mut ctr = 0;
     let mut limit_available = 0;
     let mut start_pos_cr = (0, 0);
 
-    for line in contents.lines().skip(2) {
+    for line in input.lines().skip(2) {
         let f = line.to_string();
         let lol: Vec<String> = f
             .split_whitespace()
@@ -106,8 +100,12 @@ fn parse_solve(path: &str) -> (usize, usize) {
     return (pairs, moves);
 }
 
-pub fn solve() {
-    let values = parse_solve("2016/day22/input");
+pub fn solve(filepath: &str) {
+    let input = std::fs::read_to_string(filepath)
+        .unwrap()
+        .trim_end_matches('\n')
+        .to_string();
+    let values = parse_solve(&input);
     println!("Part 1: {}", values.0);
     println!("Part 2: {}", values.1);
 }

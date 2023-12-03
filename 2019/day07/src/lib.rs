@@ -86,8 +86,11 @@ fn solve_part_two(memory: Vec<i64>) -> i64 {
     return max_value;
 }
 
-pub fn solve() {
-    let input = common::read_file("2019/day07/input");
+pub fn solve(filepath: &str) {
+    let input = std::fs::read_to_string(filepath)
+        .unwrap()
+        .trim_end_matches('\n')
+        .to_string();
     println!(
         "Part one: {}",
         solve_part_one(intcode::parse_input(input.as_str()))

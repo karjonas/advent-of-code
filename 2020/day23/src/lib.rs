@@ -96,7 +96,7 @@ fn part_two(mut input: Deck) -> usize {
     return n0 * n1;
 }
 
-pub fn solve() {
+pub fn solve(_filepath: &str) {
     println!("Part one: {}", part_one(parse_input(INPUT, false)));
     println!("Part two: {}", part_two(parse_input(INPUT, true)));
 }

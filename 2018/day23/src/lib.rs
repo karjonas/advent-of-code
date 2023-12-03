@@ -3,8 +3,6 @@ extern crate regex;
 
 use regex::Regex;
 
-const INPUT_PATH: &str = "2018/day23/input";
-
 #[derive(Debug, Copy, Clone)]
 struct Point {
     x: i64,
@@ -18,8 +16,7 @@ struct NanoBot {
     r: usize,
 }
 
-fn parse_input() -> Vec<NanoBot> {
-    let input = common::read_file(INPUT_PATH);
+fn parse_input(input: &String) -> Vec<NanoBot> {
     let lines = input.lines().collect::<Vec<_>>();
     let mut ret = Vec::new();
 
@@ -68,14 +65,14 @@ fn num_bots_in_range(bot: &NanoBot, bots: &Vec<NanoBot>) -> usize {
     return ctr;
 }
 
-fn part_one() -> usize {
-    let bots = parse_input();
+fn part_one(input: &String) -> usize {
+    let bots = parse_input(input);
     let best_bot = find_strongest_bot(&bots);
     return num_bots_in_range(&best_bot, &bots);
 }
 
-fn part_two() -> usize {
-    let bots = parse_input();
+fn part_two(input: &String) -> usize {
+    let bots = parse_input(input);
     let (mut xmin, mut xmax) = bots.iter().fold((bots[0].p.x, bots[0].p.x), |total, next| {
         (
             std::cmp::min(total.0, next.p.x),
@@ -143,7 +140,12 @@ fn part_two() -> usize {
     }
 }
 
-pub fn solve() {
-    println!("Part one: {}", part_one());
-    println!("Part two: {}", part_two());
+pub fn solve(filepath: &str) {
+    let input = std::fs::read_to_string(filepath)
+        .unwrap()
+        .trim_end_matches('\n')
+        .to_string();
+
+    println!("Part one: {}", part_one(&input));
+    println!("Part two: {}", part_two(&input));
 }

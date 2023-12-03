@@ -1,7 +1,5 @@
 extern crate common;
 
-const INPUT_FILE: &str = "2018/day15/input";
-
 #[derive(Clone, Debug)]
 struct Unit {
     x: usize,
@@ -26,8 +24,7 @@ fn are_units_sorted(a: &Unit, b: &Unit) -> bool {
     return if a.y == b.y { a.x < b.x } else { a.y < b.y };
 }
 
-fn read_input() -> (Vec<Vec<char>>, Vec<Unit>) {
-    let input = common::read_file(INPUT_FILE);
+fn read_input(input: &String) -> (Vec<Vec<char>>, Vec<Unit>) {
     let mut board = Vec::new();
     let mut units = Vec::new();
 
@@ -352,8 +349,13 @@ fn part_two(board: &Vec<Vec<char>>, units_in: &mut Vec<Unit>) -> String {
     }
 }
 
-pub fn solve() {
-    let (board, units) = read_input();
+pub fn solve(filepath: &str) {
+    let input = std::fs::read_to_string(filepath)
+        .unwrap()
+        .trim_end_matches('\n')
+        .to_string();
+
+    let (board, units) = read_input(&input);
     println!("Part one: {}", part_one(&board, &mut units.clone()));
     println!("Part two: {}", part_two(&board, &mut units.clone()));
 }

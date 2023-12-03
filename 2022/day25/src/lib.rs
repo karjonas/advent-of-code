@@ -56,8 +56,11 @@ fn part_one(input: &String) -> String {
     return to_snafu(sum);
 }
 
-pub fn solve() {
-    let input = common::read_file("2022/day25/input");
+pub fn solve(filepath: &str) {
+    let input = std::fs::read_to_string(filepath)
+        .unwrap()
+        .trim_end_matches('\n')
+        .to_string();
     println!("Part one: {}", part_one(&input));
 }
 

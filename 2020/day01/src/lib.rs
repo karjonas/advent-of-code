@@ -26,8 +26,11 @@ fn solve_second(input: &Vec<i64>) -> i64 {
     panic!("No solution found");
 }
 
-pub fn solve() {
-    let input: Vec<i64> = common::read_file("2020/day01/input")
+pub fn solve(filepath: &str) {
+    let input: Vec<i64> = std::fs::read_to_string(filepath)
+        .unwrap()
+        .trim()
+        .to_string()
         .lines()
         .map(|s| common::string_to_i64(s))
         .collect();

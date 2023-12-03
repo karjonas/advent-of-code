@@ -2,8 +2,6 @@ extern crate regex;
 
 use regex::Regex;
 use std::collections::HashMap;
-use std::fs::File;
-use std::io::prelude::*;
 
 #[derive(Debug, Clone)]
 enum Instruction {
@@ -226,12 +224,13 @@ fn run_code(instructions_in: &Vec<Instruction>, values: &mut HashMap<String, i32
     return tried_a;
 }
 
-pub fn solve() {
-    let mut file = File::open("2016/day25/input").unwrap();
-    let mut contents = String::new();
-    file.read_to_string(&mut contents).unwrap();
+pub fn solve(filepath: &str) {
+    let input = std::fs::read_to_string(filepath)
+        .unwrap()
+        .trim_end_matches('\n')
+        .to_string();
 
-    let instructions = parse_instructions(contents);
+    let instructions = parse_instructions(input);
 
     {
         let mut values: HashMap<String, i32> = HashMap::new();

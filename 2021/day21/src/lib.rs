@@ -89,8 +89,11 @@ fn play_game_p2(p1: usize, p2: usize) -> usize {
     return std::cmp::max(wins_p1, wins_p2);
 }
 
-pub fn solve() {
-    let input = common::read_file("2021/day21/input");
+pub fn solve(filepath: &str) {
+    let input = std::fs::read_to_string(filepath)
+        .unwrap()
+        .trim_end_matches('\n')
+        .to_string();
     let (p1, p2) = parse_input(&input);
 
     println!("Part one: {}", play_game(p1, p2));

@@ -38,7 +38,7 @@ fn find_best_solution(grid_summed: &Vec<Vec<Vec<i64>>>, part_one: bool) -> (usiz
     return (best_index.0, best_index.1, best_index.2);
 }
 
-pub fn solve() {
+pub fn solve(_filepath: &str) {
     let serial_number = 9306;
     let mut grid = common::filled_vector(301, common::filled_vector(301, 0 as i64));
     let mut grid_summed = common::filled_vector(

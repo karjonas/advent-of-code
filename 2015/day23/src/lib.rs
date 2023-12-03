@@ -107,8 +107,11 @@ fn run(input: &str, start_val_a: usize) -> usize {
     return hm.get(&'b').unwrap().clone();
 }
 
-pub fn solve() {
-    let input = common::read_file("2015/day23/input");
+pub fn solve(filepath: &str) {
+    let input = std::fs::read_to_string(filepath)
+        .unwrap()
+        .trim_end_matches('\n')
+        .to_string();
     println!("Part one: {}", run(input.as_str(), 0));
     println!("Part two: {}", run(input.as_str(), 1));
 }

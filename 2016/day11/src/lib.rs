@@ -1,8 +1,6 @@
 use std::collections::HashMap;
 use std::collections::HashSet;
 use std::collections::VecDeque;
-use std::fs::File;
-use std::io::prelude::*;
 
 const NUM_FLOORS: usize = 4;
 const NUM_TOT: usize = 14;
@@ -179,12 +177,8 @@ fn solve_brute(rtgs: [usize; NUM_FLOORS]) -> usize {
     }
 }
 
-fn solve_internal(input_str: &str) -> usize {
-    let mut file = File::open(input_str).unwrap();
-    let mut contents = String::new();
-    file.read_to_string(&mut contents).unwrap();
-
-    let line_words: Vec<Vec<String>> = contents
+fn solve_internal(input: &str, part_two: bool) -> usize {
+    let mut line_words: Vec<Vec<String>> = input
         .lines()
         .map(|l| {
             l.split(|c| c == ' ' || c == '-' || c == ',' || c == '.')
@@ -192,6 +186,29 @@ fn solve_internal(input_str: &str) -> usize {
                 .collect()
         })
         .collect();
+
+    if part_two {
+        let words = [
+            "An",
+            "elerium",
+            "generator",
+            "An",
+            "elerium",
+            "compatible",
+            "microchip",
+            "A",
+            "dilithium",
+            "generator",
+            "A",
+            "dilithium",
+            "compatible",
+            "microchip",
+        ];
+
+        for word in words {
+            line_words[0].push(word.to_string());
+        }
+    }
 
     let mut hm = HashMap::new();
     let mut rtgs = [0; NUM_FLOORS];
@@ -220,7 +237,11 @@ fn solve_internal(input_str: &str) -> usize {
     return solve_brute(rtgs);
 }
 
-pub fn solve() {
-    println!("Part 1: {:?}", solve_internal("2016/day11/input"));
-    println!("Part 2: {:?}", solve_internal("2016/day11/input2"));
+pub fn solve(filepath: &str) {
+    let input = std::fs::read_to_string(filepath)
+        .unwrap()
+        .trim_end_matches('\n')
+        .to_string();
+    println!("Part 1: {:?}", solve_internal(input.as_str(), false));
+    println!("Part 2: {:?}", solve_internal(input.as_str(), true));
 }

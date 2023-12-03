@@ -5,8 +5,6 @@ use regex::Regex;
 
 use std::collections::HashMap;
 
-const INPUT_PATH: &str = "2018/day16/input";
-
 #[derive(Debug, Clone, PartialEq)]
 enum Instruction {
     Addr,
@@ -54,8 +52,7 @@ struct Sample {
     possible_instructions: Vec<Instruction>,
 }
 
-fn parse_input() -> (Vec<Sample>, Vec<[usize; 4]>) {
-    let input = common::read_file(INPUT_PATH);
+fn parse_input(input: &String) -> (Vec<Sample>, Vec<[usize; 4]>) {
     let lines = input.lines().collect::<Vec<_>>();
 
     let re = Regex::new(r".*\[(\d+), (\d+), (\d+), (\d+)\]").unwrap();
@@ -182,8 +179,12 @@ fn instruction_compatible(
     return true;
 }
 
-pub fn solve() {
-    let (mut samples, program) = parse_input();
+pub fn solve(filepath: &str) {
+    let input = std::fs::read_to_string(filepath)
+        .unwrap()
+        .trim_end_matches('\n')
+        .to_string();
+    let (mut samples, program) = parse_input(&input);
     for i in 0..samples.len() {
         for instr in ALL_INSTRUCTIONS.iter() {
             if instruction_compatible(

@@ -1,6 +1,4 @@
 use std::collections::HashMap;
-use std::fs::File;
-use std::io::prelude::*;
 
 fn calc_weights_recursive(
     root: String,
@@ -58,11 +56,12 @@ fn calc_weights_recursive(
     }
 }
 
-pub fn solve() {
-    let mut file = File::open("2017/day07/input").unwrap();
-    let mut contents = String::new();
-    file.read_to_string(&mut contents).unwrap();
-    contents = contents
+pub fn solve(filepath: &str) {
+    let input = std::fs::read_to_string(filepath)
+        .unwrap()
+        .trim_end_matches('\n')
+        .to_string();
+    let contents: String = input
         .chars()
         .filter(|v| v.is_alphanumeric() || v.clone() == '\n' || v.clone() == ' ')
         .collect();

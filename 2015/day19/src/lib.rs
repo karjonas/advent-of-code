@@ -2,8 +2,6 @@ extern crate common;
 
 use std::collections::HashSet;
 
-const INPUT_PATH: &str = "2015/day19/input";
-
 fn parse_input(input: &str) -> (String, Vec<(String, String)>) {
     let lines = input.lines().collect::<Vec<_>>();
     let mut map = Vec::new();
@@ -88,15 +86,13 @@ fn part_one(input: &str) -> usize {
     return results.len();
 }
 
-pub fn solve() {
-    println!(
-        "Part one: {}",
-        part_one(common::read_file(INPUT_PATH).as_str())
-    );
-    println!(
-        "Part two: {}",
-        part_two(common::read_file(INPUT_PATH).as_str())
-    );
+pub fn solve(filepath: &str) {
+    let input = std::fs::read_to_string(filepath)
+        .unwrap()
+        .trim_end_matches('\n')
+        .to_string();
+    println!("Part one: {}", part_one(input.as_str()));
+    println!("Part two: {}", part_two(input.as_str()));
 }
 
 #[cfg(test)]

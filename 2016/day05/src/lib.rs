@@ -56,7 +56,7 @@ fn solve_internal(input: &str, part_two: bool) -> String {
     return String::new();
 }
 
-pub fn solve() {
+pub fn solve(_filepath: &str) {
     println!("Part one: {}", solve_internal(&INPUT, false));
     println!("Part two: {}", solve_internal(&INPUT, true));
 }

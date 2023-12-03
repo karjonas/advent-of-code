@@ -4,8 +4,6 @@ extern crate regex;
 use regex::Regex;
 use std::collections::HashSet;
 
-const INPUT_PATH: &str = "2018/day25/input";
-
 #[derive(Debug, Clone)]
 struct Point {
     data: [i64; 4],
@@ -20,8 +18,7 @@ fn dist(a: &Point, b: &Point) -> usize {
     return d;
 }
 
-fn parse_input() -> Vec<Point> {
-    let input = common::read_file(INPUT_PATH);
+fn parse_input(input: &String) -> Vec<Point> {
     let mut output = Vec::new();
     let re = Regex::new(r"(.*),(.*),(.*),(.*)").unwrap();
 
@@ -78,11 +75,15 @@ fn find_constellations(points: &mut Vec<Point>) -> usize {
     return constellations.len();
 }
 
-fn part_one() {
-    let mut points = parse_input();
+fn part_one(input: &String) {
+    let mut points = parse_input(input);
     println!("Part one: {}", find_constellations(&mut points));
 }
 
-pub fn solve() {
-    part_one();
+pub fn solve(filepath: &str) {
+    let input = std::fs::read_to_string(filepath)
+        .unwrap()
+        .trim_end_matches('\n')
+        .to_string();
+    part_one(&input);
 }

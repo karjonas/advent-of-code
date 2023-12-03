@@ -62,7 +62,7 @@ fn solve_internal(input: &str, num_zeroes: usize) -> usize {
     }
 }
 
-pub fn solve() {
+pub fn solve(_filepath: &str) {
     println!("Part one: {}", solve_internal(INPUT, 5));
     println!("Part two: {}", solve_internal(INPUT, 6));
 }

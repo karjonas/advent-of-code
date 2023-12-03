@@ -185,8 +185,11 @@ fn run_commands(input: &String, deck: &VecDeque<i32>) -> VecDeque<i32> {
     return result;
 }
 
-pub fn solve() {
-    let input = common::read_file("2019/day22/input");
+pub fn solve(filepath: &str) {
+    let input = std::fs::read_to_string(filepath)
+        .unwrap()
+        .trim_end_matches('\n')
+        .to_string();
     println!("Part one: {}", solve_part_one(input.clone()));
     println!("Part two: {}", solve_part_two(input.clone()));
 }

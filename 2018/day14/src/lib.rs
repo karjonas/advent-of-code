@@ -54,7 +54,7 @@ fn part_two(recipes: &mut Vec<usize>, elves: &mut Vec<usize>) -> String {
     }
 }
 
-pub fn solve() {
+pub fn solve(_filepath: &str) {
     let recipes: Vec<usize> = vec![3, 7];
     let elves: Vec<usize> = vec![0, 1];
 

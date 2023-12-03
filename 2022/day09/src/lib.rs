@@ -71,8 +71,11 @@ fn simulate(input: &String, rope_length: usize) -> usize {
     return visited.len();
 }
 
-pub fn solve() {
-    let input = common::read_file("2022/day09/input");
+pub fn solve(filepath: &str) {
+    let input = std::fs::read_to_string(filepath)
+        .unwrap()
+        .trim_end_matches('\n')
+        .to_string();
 
     println!("Part one: {}", simulate(&input, 2));
     println!("Part two: {}", simulate(&input, 10));

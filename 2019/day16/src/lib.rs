@@ -82,8 +82,11 @@ fn solve_part_two(input: String) -> usize {
     return calc_fft_p2(s, 100);
 }
 
-pub fn solve() {
-    let input = common::read_file("2019/day16/input");
+pub fn solve(filepath: &str) {
+    let input = std::fs::read_to_string(filepath)
+        .unwrap()
+        .trim_end_matches('\n')
+        .to_string();
     println!("Part one: {}", calc_fft(String::from(&input), 100));
     println!("Part two: {}", solve_part_two(input));
 }

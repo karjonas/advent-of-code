@@ -40,8 +40,11 @@ fn solve_internal_p2(input: &Vec<String>) -> i64 {
     return x * y;
 }
 
-pub fn solve() {
-    let input: Vec<String> = common::read_file("2021/day02/input")
+pub fn solve(filepath: &str) {
+    let input: Vec<String> = std::fs::read_to_string(filepath)
+        .unwrap()
+        .trim()
+        .to_string()
         .lines()
         .map(|s| String::from(s))
         .collect();

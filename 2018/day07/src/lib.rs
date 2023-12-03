@@ -1,7 +1,6 @@
 extern crate common;
 
 const TIME_QUOTE: usize = 60;
-const INPUT_FILE: &str = "2018/day07/input";
 const NUM_LETTERS: usize = 1 + ('Z' as u8 - 'A' as u8) as usize;
 
 fn solve_time(c: char) -> usize {
@@ -107,8 +106,11 @@ fn solve_input(input: &Vec<Vec<String>>, num_workers: usize) -> (String, usize) 
     return (result, time);
 }
 
-pub fn solve() {
-    let input = common::read_file(INPUT_FILE)
+pub fn solve(filepath: &str) {
+    let input = std::fs::read_to_string(filepath)
+        .unwrap()
+        .trim()
+        .to_string()
         .lines()
         .map(|l| l.split_whitespace().map(|v| v.to_string()).collect())
         .collect::<Vec<Vec<String>>>();

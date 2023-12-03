@@ -58,8 +58,11 @@ fn solve_internal(input: &String, part_one: bool) -> String {
     return result;
 }
 
-pub fn solve() {
-    let input = common::read_file("2022/day05/input");
+pub fn solve(filepath: &str) {
+    let input = std::fs::read_to_string(filepath)
+        .unwrap()
+        .trim_end_matches('\n')
+        .to_string();
     println!("Part one: {}", solve_internal(&input, true));
     println!("Part two: {}", solve_internal(&input, false));
 }

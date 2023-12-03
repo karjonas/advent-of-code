@@ -268,8 +268,11 @@ fn orient_beacons(input: &String) -> (usize, Vec<Point>) {
     return (beacons.len(), offsets);
 }
 
-pub fn solve() {
-    let input = common::read_file("2021/day19/input");
+pub fn solve(filepath: &str) {
+    let input = std::fs::read_to_string(filepath)
+        .unwrap()
+        .trim_end_matches('\n')
+        .to_string();
     let (num_beacons, positions) = orient_beacons(&input);
 
     let mut max = 0;

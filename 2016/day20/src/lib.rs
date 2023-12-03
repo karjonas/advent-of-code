@@ -1,12 +1,5 @@
-use std::fs::File;
-use std::io::prelude::*;
-
-fn solve_internal(path: &str) -> (usize, usize) {
-    let mut file = File::open(path).unwrap();
-    let mut contents = String::new();
-    file.read_to_string(&mut contents).unwrap();
-
-    let values: Vec<Vec<usize>> = contents
+fn solve_internal(input: &String) -> (usize, usize) {
+    let values: Vec<Vec<usize>> = input
         .lines()
         .map(|l| {
             l.split(|c| c == '-')
@@ -71,8 +64,13 @@ fn solve_internal(path: &str) -> (usize, usize) {
     return (smallest, num_hit);
 }
 
-pub fn solve() {
-    let res = solve_internal("2016/day20/input");
+pub fn solve(filepath: &str) {
+    let input = std::fs::read_to_string(filepath)
+        .unwrap()
+        .trim_end_matches('\n')
+        .to_string();
+
+    let res = solve_internal(&input);
     println!("Part 1: {}", res.0);
     println!("Part 2: {}", res.1);
 }

@@ -85,8 +85,11 @@ fn part_two(input: &String) -> usize {
     return solve_internal(input, false);
 }
 
-pub fn solve() {
-    let input = common::read_file("2022/day14/input");
+pub fn solve(filepath: &str) {
+    let input = std::fs::read_to_string(filepath)
+        .unwrap()
+        .trim_end_matches('\n')
+        .to_string();
     println!("Part one: {}", part_one(&input));
     println!("Part two: {}", part_two(&input));
 }

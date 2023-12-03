@@ -46,7 +46,7 @@ fn generate(mod_a: usize, mod_b: usize) -> usize {
     return hits;
 }
 
-pub fn solve() {
+pub fn solve(_filepath: &str) {
     println!("Part one: {}", generate(1, 1));
     println!("Part two: {}", generate(4, 8));
 }

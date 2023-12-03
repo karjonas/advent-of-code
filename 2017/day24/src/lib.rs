@@ -1,6 +1,4 @@
 use std::collections::HashMap;
-use std::fs::File;
-use std::io::prelude::*;
 
 fn match_recursive(
     match_val: usize,
@@ -68,12 +66,12 @@ fn match_recursive(
     }
     return (best_strength, best_length);
 }
-pub fn solve() {
-    let mut file = File::open("2017/day24/input").unwrap();
-    let mut contents = String::new();
-    file.read_to_string(&mut contents).unwrap();
-
-    let vals: Vec<Vec<usize>> = contents
+pub fn solve(filepath: &str) {
+    let input = std::fs::read_to_string(filepath)
+        .unwrap()
+        .trim_end_matches('\n')
+        .to_string();
+    let vals: Vec<Vec<usize>> = input
         .split('\n')
         .map(|l| l.split('/').map(|v| v.parse::<usize>().unwrap()).collect())
         .collect();

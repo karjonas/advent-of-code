@@ -163,8 +163,11 @@ fn solve_internal_p2(input: &String) -> usize {
     return max;
 }
 
-pub fn solve() {
-    let input = common::read_file("2021/day18/input");
+pub fn solve(filepath: &str) {
+    let input = std::fs::read_to_string(filepath)
+        .unwrap()
+        .trim_end_matches('\n')
+        .to_string();
     println!("Part one: {}", solve_internal_p1(&input));
     println!("Part two: {}", solve_internal_p2(&input));
 }
@@ -207,19 +210,27 @@ mod tests {
             parse_snails(&"[[[[0,7],4],[7,[[8,4],9]]],[1,1]]".to_string())
         );
         assert_eq!(
-            reduce(&parse_snails(&String::from("[[[[0,7],4],[7,[[8,4],9]]],[1,1]]"))),
+            reduce(&parse_snails(&String::from(
+                "[[[[0,7],4],[7,[[8,4],9]]],[1,1]]"
+            ))),
             parse_snails(&"[[[[0,7],4],[15,[0,13]]],[1,1]]".to_string())
         );
         assert_eq!(
-            reduce(&parse_snails(&String::from("[[[[0,7],4],[15,[0,13]]],[1,1]]"))),
+            reduce(&parse_snails(&String::from(
+                "[[[[0,7],4],[15,[0,13]]],[1,1]]"
+            ))),
             parse_snails(&"[[[[0,7],4],[[7,8],[0,13]]],[1,1]]".to_string())
         );
         assert_eq!(
-            reduce(&parse_snails(&String::from("[[[[0,7],4],[[7,8],[0,13]]],[1,1]]"))),
+            reduce(&parse_snails(&String::from(
+                "[[[[0,7],4],[[7,8],[0,13]]],[1,1]]"
+            ))),
             parse_snails(&"[[[[0,7],4],[[7,8],[0,[6,7]]]],[1,1]]".to_string())
         );
         assert_eq!(
-            reduce(&parse_snails(&String::from("[[[[0,7],4],[[7,8],[0,[6,7]]]],[1,1]]"))),
+            reduce(&parse_snails(&String::from(
+                "[[[[0,7],4],[[7,8],[0,[6,7]]]],[1,1]]"
+            ))),
             parse_snails(&"[[[[0,7],4],[[7,8],[6,0]]],[8,1]]".to_string())
         );
 

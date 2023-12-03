@@ -1,16 +1,14 @@
 extern crate regex;
 
 use regex::Regex;
-use std::fs::File;
-use std::io::prelude::*;
 
 const MAXROBOTS: usize = 1000;
 
-pub fn solve() {
-    let mut file = File::open("2016/day10/input").unwrap();
-    let mut contents = String::new();
-    file.read_to_string(&mut contents).unwrap();
-
+pub fn solve(filepath: &str) {
+    let input = std::fs::read_to_string(filepath)
+        .unwrap()
+        .trim_end_matches('\n')
+        .to_string();
     let regex_goes = Regex::new(r"value (\d+) goes to bot (\d+)").unwrap();
     let regex_bot_gives =
         Regex::new(r"bot (\d+) gives low to (\w+) (\d+) and high to (\w+) (\d+)").unwrap();
@@ -34,7 +32,7 @@ pub fn solve() {
 
     let mut max_idx = 0;
 
-    for line in contents.lines() {
+    for line in input.lines() {
         let mut ok = false;
         match regex_goes.captures(line) {
             Some(cap) => {

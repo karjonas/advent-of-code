@@ -1,7 +1,5 @@
 extern crate regex;
 use regex::Regex;
-use std::fs::File;
-use std::io::prelude::*;
 
 const NROWS: usize = 6;
 const NCOLS: usize = 50;
@@ -37,10 +35,11 @@ fn print_rec(grid_rc: &Vec<Vec<bool>>) {
     }
 }
 
-pub fn solve() {
-    let mut file = File::open("2016/day08/input").unwrap();
-    let mut contents = String::new();
-    file.read_to_string(&mut contents).unwrap();
+pub fn solve(filepath: &str) {
+    let input = std::fs::read_to_string(filepath)
+        .unwrap()
+        .trim_end_matches('\n')
+        .to_string();
 
     let mut grid_rc = vec![vec![false; NCOLS]; NROWS];
 
@@ -48,7 +47,7 @@ pub fn solve() {
     let regex_row = Regex::new(r"rotate column x=(\d+) by (\d+)").unwrap();
     let regex_col = Regex::new(r"rotate row y=(\d+) by (\d+)").unwrap();
 
-    for line in contents.lines() {
+    for line in input.lines() {
         match regex_rect.captures(line) {
             Some(cap) => set_rect(
                 &mut grid_rc,

@@ -88,8 +88,11 @@ fn solve_internal(input: &String) -> (usize, usize) {
     return (best_score as usize, best_score_lowcal as usize);
 }
 
-pub fn solve() {
-    let input = common::read_file("2015/day15/input");
+pub fn solve(filepath: &str) {
+    let input = std::fs::read_to_string(filepath)
+        .unwrap()
+        .trim_end_matches('\n')
+        .to_string();
     let (p1, p2) = solve_internal(&input);
     println!("Part one: {}", p1);
     println!("Part two: {}", p2);

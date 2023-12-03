@@ -28,8 +28,11 @@ fn round_p2(player: char, enemy: char) -> usize {
     };
 }
 
-pub fn solve() {
-    let input = common::read_file("2022/day02/input");
+pub fn solve(filepath: &str) {
+    let input = std::fs::read_to_string(filepath)
+        .unwrap()
+        .trim_end_matches('\n')
+        .to_string();
     let enemy: Vec<char> = input.lines().map(|v| v.as_bytes()[0] as char).collect();
     let player: Vec<char> = input.lines().map(|v| v.as_bytes()[2] as char).collect();
     let len = enemy.len();

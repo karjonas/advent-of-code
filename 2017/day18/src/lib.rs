@@ -1,6 +1,4 @@
 use std::collections::VecDeque;
-use std::fs::File;
-use std::io::prelude::*;
 
 #[derive(Debug)]
 enum Instruction {
@@ -216,12 +214,13 @@ fn do_instruction(
     return true;
 }
 
-pub fn solve() {
-    let mut file = File::open("2017/day18/input").unwrap();
-    let mut contents = String::new();
-    file.read_to_string(&mut contents).unwrap();
+pub fn solve(filepath: &str) {
+    let input = std::fs::read_to_string(filepath)
+        .unwrap()
+        .trim_end_matches('\n')
+        .to_string();
 
-    let cmds: Vec<Vec<String>> = contents
+    let cmds: Vec<Vec<String>> = input
         .trim()
         .split('\n')
         .map(|v| v.split(' ').map(|i| i.to_string()).collect())

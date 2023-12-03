@@ -3,7 +3,6 @@ extern crate regex;
 
 use regex::Regex;
 
-const INPUT_PATH: &str = "2018/day24/input";
 const DEBUG_PRINT: bool = false;
 
 #[derive(Debug, Clone)]
@@ -27,8 +26,7 @@ struct Battle {
     infection: Vec<Group>,
 }
 
-fn parse_input() -> Battle {
-    let input = common::read_file(INPUT_PATH);
+fn parse_input(input: &String) -> Battle {
     let lines = input.lines().collect::<Vec<_>>();
 
     let re = Regex::new(r"(.*) \((.*)\) (.*)").unwrap();
@@ -384,8 +382,13 @@ fn part_two(battle_in: &Battle) {
     }
 }
 
-pub fn solve() {
-    let battle = parse_input();
+pub fn solve(filepath: &str) {
+    let input = std::fs::read_to_string(filepath)
+        .unwrap()
+        .trim_end_matches('\n')
+        .to_string();
+
+    let battle = parse_input(&input);
 
     part_one(&battle);
     part_two(&battle);

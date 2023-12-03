@@ -2,8 +2,11 @@ extern crate common;
 
 use std::collections::HashSet;
 
-pub fn solve() {
-    let input = common::read_file("2020/day06/input");
+pub fn solve(filepath: &str) {
+    let input = std::fs::read_to_string(filepath)
+        .unwrap()
+        .trim_end_matches('\n')
+        .to_string();
 
     let mut curr_group_intersect = HashSet::new();
     let mut curr_group: HashSet<char> = HashSet::new();

@@ -376,8 +376,13 @@ fn part_two(squares: &Vec<Square>, solved_state: &SolverState) -> usize {
     return 0;
 }
 
-pub fn solve() {
-    let squares = parse_input(&common::read_file("2020/day20/input"));
+pub fn solve(filepath: &str) {
+    let squares = parse_input(
+        &std::fs::read_to_string(filepath)
+            .unwrap()
+            .trim()
+            .to_string(),
+    );
     let solved_state = solve_tiles(&squares);
     let width = (squares.len() as f32).sqrt() as usize;
 

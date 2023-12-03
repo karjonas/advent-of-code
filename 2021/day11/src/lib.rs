@@ -65,12 +65,12 @@ fn do_step(mut grid: Vec<Vec<u8>>) -> (Vec<Vec<u8>>, usize) {
 
 fn solve_internal_p1(input: &String) -> usize {
     let mut grid = parse_input(input);
-    
+
     let mut flashes_sum = 0;
     for _step in 0..100 {
         let (grid_next, flashes) = do_step(grid.clone());
         flashes_sum += flashes;
-        
+
         grid = grid_next;
     }
 
@@ -95,8 +95,11 @@ fn solve_internal_p2(input: &String) -> usize {
     return ctr;
 }
 
-pub fn solve() {
-    let input = common::read_file("2021/day11/input");
+pub fn solve(filepath: &str) {
+    let input = std::fs::read_to_string(filepath)
+        .unwrap()
+        .trim_end_matches('\n')
+        .to_string();
     println!("Part one: {}", solve_internal_p1(&input));
     println!("Part two: {}", solve_internal_p2(&input));
 }

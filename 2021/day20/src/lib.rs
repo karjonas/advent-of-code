@@ -101,8 +101,11 @@ fn solve_repeat(mut state: State, repeat: usize) -> usize {
     return state.lit_pixels.len();
 }
 
-pub fn solve() {
-    let input = common::read_file("2021/day20/input");
+pub fn solve(filepath: &str) {
+    let input = std::fs::read_to_string(filepath)
+        .unwrap()
+        .trim_end_matches('\n')
+        .to_string();
     let state = parse_input(&input);
     println!("Part one: {:?}", solve_repeat(state.clone(), 2));
     println!("Part two: {:?}", solve_repeat(state.clone(), 50));

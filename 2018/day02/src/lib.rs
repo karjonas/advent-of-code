@@ -48,8 +48,11 @@ pub fn part_one(lines: Vec<Vec<char>>) -> usize {
     return num_twos * num_threes;
 }
 
-pub fn solve() {
-    let contents = common::read_file("2018/day02/input");
+pub fn solve(filepath: &str) {
+    let contents = std::fs::read_to_string(filepath)
+        .unwrap()
+        .trim()
+        .to_string();
     let lines: Vec<Vec<char>> = contents
         .lines()
         .map(|v| v.trim().chars().collect())

@@ -1,16 +1,13 @@
-use std::fs::File;
-use std::io::prelude::*;
-
 fn valid_tri(a: i32, b: i32, c: i32) -> bool {
     return a + b > c && b + c > a && c + a > b;
 }
 
-pub fn solve() {
-    let mut file = File::open("2016/day03/input").unwrap();
-    let mut contents = String::new();
-    file.read_to_string(&mut contents).unwrap();
-
-    let tris: Vec<Vec<_>> = contents
+pub fn solve(filepath: &str) {
+    let input = std::fs::read_to_string(filepath)
+        .unwrap()
+        .trim_end_matches('\n')
+        .to_string();
+    let tris: Vec<Vec<_>> = input
         .lines()
         .map(|v| {
             v.split_whitespace()

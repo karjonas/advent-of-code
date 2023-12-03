@@ -7,8 +7,7 @@ struct Dimension {
     h: usize,
 }
 
-fn parse_input() -> Vec<Dimension> {
-    let input = common::read_file("2015/day02/input");
+fn parse_input(input: &String) -> Vec<Dimension> {
     let mut list = Vec::new();
     for line in input.lines() {
         let vals: Vec<_> = line.split('x').collect();
@@ -20,8 +19,12 @@ fn parse_input() -> Vec<Dimension> {
     return list;
 }
 
-pub fn solve() {
-    let dims = parse_input();
+pub fn solve(filepath: &str) {
+    let input = std::fs::read_to_string(filepath)
+        .unwrap()
+        .trim_end_matches('\n')
+        .to_string();
+    let dims = parse_input(&input);
     let part_one = dims.iter().fold(0, |sum, v| sum + surface_area(v));
     let part_two = dims.iter().fold(0, |sum, v| sum + ribbon_length(v));
     println!("Part one: {}", part_one);
@@ -58,5 +61,4 @@ mod tests {
         assert_eq!(ribbon_length(&Dimension { l: 2, w: 3, h: 4 }), 34);
         assert_eq!(ribbon_length(&Dimension { l: 1, w: 1, h: 10 }), 14);
     }
-
 }

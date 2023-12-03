@@ -2,9 +2,6 @@ extern crate regex;
 
 use regex::Regex;
 
-use std::fs::File;
-use std::io::prelude::*;
-
 #[derive(Debug, Clone)]
 struct Particle {
     pos: (i32, i32, i32),
@@ -16,11 +13,11 @@ struct Particle {
     collided: bool,
 }
 
-pub fn solve() {
-    let mut file = File::open("2017/day20/input").unwrap();
-    let mut contents = String::new();
-    file.read_to_string(&mut contents).unwrap();
-
+pub fn solve(filepath: &str) {
+    let input = std::fs::read_to_string(filepath)
+        .unwrap()
+        .trim_end_matches('\n')
+        .to_string();
     let regex = Regex::new(r".*<(.*)>.*<(.*)>.*<(.*)>").unwrap();
     let mut ctr = 0;
     let mut best_idx = 0;
@@ -28,7 +25,7 @@ pub fn solve() {
 
     let mut particles = Vec::<Particle>::new();
 
-    for line in contents.lines() {
+    for line in input.lines() {
         let cap = regex.captures(line).unwrap();
         let p: Vec<_> = cap[1]
             .to_string()

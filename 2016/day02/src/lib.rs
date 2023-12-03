@@ -77,7 +77,7 @@ fn step_b(dir: char, pos: char) -> char {
     return v;
 }
 
-pub fn solve() {
+pub fn solve(_filepath: &str) {
     //    let payload_test = "ULL
     //RRDDD
     //LURDL

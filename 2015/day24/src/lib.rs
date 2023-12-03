@@ -12,8 +12,7 @@ fn calc_qe(numbers: &Vec<usize>, num_groups: usize) -> usize {
     for group_size in 1.. {
         for group in numbers.iter().combinations(group_size) {
             if group.iter().fold(0, |sum, v| sum + *v) == goal {
-                min_quantum =
-                    std::cmp::min(group.iter().fold(1, |sum, v| sum * (*v)), min_quantum);
+                min_quantum = std::cmp::min(group.iter().fold(1, |sum, v| sum * (*v)), min_quantum);
             }
         }
         if min_quantum != std::usize::MAX {
@@ -23,8 +22,11 @@ fn calc_qe(numbers: &Vec<usize>, num_groups: usize) -> usize {
     return min_quantum;
 }
 
-pub fn solve() {
-    let input = common::read_file("2015/day24/input");
+pub fn solve(filepath: &str) {
+    let input = std::fs::read_to_string(filepath)
+        .unwrap()
+        .trim_end_matches('\n')
+        .to_string();
     let vec = input
         .lines()
         .map(|v| common::string_to_i64(v) as usize)

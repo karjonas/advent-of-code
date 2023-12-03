@@ -91,6 +91,6 @@ fn solve_internal() {
     println!("Part 2: {:?}", longest_path);
 }
 
-pub fn solve() {
+pub fn solve(_filepath: &str) {
     solve_internal();
 }

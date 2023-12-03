@@ -33,7 +33,7 @@ fn solve_internal(part_one: bool) -> usize {
     return counter;
 }
 
-pub fn solve() {
+pub fn solve(_filepath: &str) {
     println!("Part one: {}", solve_internal(true));
     println!("Part two: {}", solve_internal(false));
 }

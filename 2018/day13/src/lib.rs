@@ -1,7 +1,5 @@
 extern crate common;
 
-const INPUT_FILE: &str = "2018/day13/input";
-
 fn is_cart(c: char) -> bool {
     return c == '^' || c == 'v' || c == '<' || c == '>';
 }
@@ -200,9 +198,7 @@ fn step_grid(pos_new: &mut Vec<Cart>, grid: &Vec<Vec<char>>) {
     }
 }
 
-fn read_grid() -> GridState {
-    let input = common::read_file(INPUT_FILE);
-
+fn read_grid(input: &String) -> GridState {
     let mut start_positions: Vec<Cart> = Vec::new();
     let mut grid: Vec<Vec<char>> = Vec::new();
     for line in input.lines() {
@@ -277,8 +273,9 @@ fn part_one(grid_state: &mut GridState) -> String {
         };
     }
 }
-pub fn solve() {
-    let grid_state = read_grid();
+pub fn solve(filepath: &str) {
+    let input = std::fs::read_to_string(filepath).unwrap().to_string();
+    let grid_state = read_grid(&input);
     println!("Part one: {}", part_one(&mut grid_state.clone()));
     println!("Part two: {}", part_two(&mut grid_state.clone()));
 }

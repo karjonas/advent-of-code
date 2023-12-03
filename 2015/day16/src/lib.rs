@@ -2,10 +2,7 @@ extern crate common;
 
 use std::collections::HashMap;
 
-const INPUT: &str = "2015/day16/input";
-
-fn parse_input() -> Vec<HashMap<String, usize>> {
-    let input = common::read_file(INPUT);
+fn parse_input(input: &String) -> Vec<HashMap<String, usize>> {
     let mut sues = Vec::new();
     for line in input.lines() {
         let mut props = HashMap::new();
@@ -57,8 +54,8 @@ fn props_greater_than() -> HashMap<String, usize> {
     return props;
 }
 
-fn part_one() -> usize {
-    let sues = parse_input();
+fn part_one(input: &String) -> usize {
+    let sues = parse_input(input);
     let mut goal_props = props_exact();
     for (prop, number) in props_greater_than() {
         goal_props.insert(prop, number);
@@ -87,8 +84,8 @@ fn part_one() -> usize {
     return ctr;
 }
 
-fn part_two() -> usize {
-    let sues = parse_input();
+fn part_two(input: &String) -> usize {
+    let sues = parse_input(input);
     let goal_exact = props_exact();
     let goal_less = props_less_than();
     let goal_greater = props_greater_than();
@@ -133,7 +130,11 @@ fn part_two() -> usize {
     return ctr;
 }
 
-pub fn solve() {
-    println!("Part one: {}", part_one());
-    println!("Part two: {}", part_two());
+pub fn solve(filepath: &str) {
+    let input = std::fs::read_to_string(filepath)
+        .unwrap()
+        .trim_end_matches('\n')
+        .to_string();
+    println!("Part one: {}", part_one(&input));
+    println!("Part two: {}", part_two(&input));
 }

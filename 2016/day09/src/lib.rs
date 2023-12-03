@@ -1,8 +1,6 @@
 extern crate regex;
 
 use regex::Regex;
-use std::fs::File;
-use std::io::prelude::*;
 
 fn decompress(s: String, recurse: bool) -> usize {
     let bytes = s.as_bytes();
@@ -42,10 +40,11 @@ fn decompress(s: String, recurse: bool) -> usize {
     return output_size;
 }
 
-pub fn solve() {
-    let mut file = File::open("2016/day09/input").unwrap();
-    let mut contents = String::new();
-    file.read_to_string(&mut contents).unwrap();
+pub fn solve(filepath: &str) {
+    let input = std::fs::read_to_string(filepath)
+        .unwrap()
+        .trim_end_matches('\n')
+        .to_string();
 
     //    let test_str0 = "ADVENT";
     //    let test_str1 = "A(1x5)BC";
@@ -66,6 +65,6 @@ pub fn solve() {
     //             decompress(test_str4.to_string(), true));
     //    println!("Decompressed recursive size {}",
     //             decompress(test_str5.to_string(), true));
-    println!("Part 1: {}", decompress(contents.clone(), false));
-    println!("Part 2: {}", decompress(contents, true));
+    println!("Part 1: {}", decompress(input.clone(), false));
+    println!("Part 2: {}", decompress(input, true));
 }

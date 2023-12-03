@@ -118,8 +118,11 @@ fn solve_part_two(mut memory: Vec<i64>) -> usize {
     return score as usize;
 }
 
-pub fn solve() {
-    let input = common::read_file("2019/day13/input");
+pub fn solve(filepath: &str) {
+    let input = std::fs::read_to_string(filepath)
+        .unwrap()
+        .trim_end_matches('\n')
+        .to_string();
     let memory = intcode::parse_input(input.as_str());
 
     println!("Part one: {}", solve_part_one(memory.clone()));

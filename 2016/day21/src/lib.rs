@@ -1,8 +1,6 @@
 extern crate regex;
 
 use regex::Regex;
-use std::fs::File;
-use std::io::prelude::*;
 
 #[derive(Debug, Clone)]
 enum Instruction {
@@ -189,12 +187,13 @@ fn solve_internal(input: &str, instructions_inp: &Vec<Instruction>, reverse: boo
     return out;
 }
 
-pub fn solve() {
-    let mut file = File::open("2016/day21/input").unwrap();
-    let mut contents = String::new();
-    file.read_to_string(&mut contents).unwrap();
+pub fn solve(filepath: &str) {
+    let input = std::fs::read_to_string(filepath)
+        .unwrap()
+        .trim_end_matches('\n')
+        .to_string();
 
-    let instructions = parse_instructions(contents);
+    let instructions = parse_instructions(input);
     let res = solve_internal("abcdefgh", &instructions, false);
     let res2 = solve_internal("fbgdceah", &instructions, true);
     println!("Part 1: {:?}", res);

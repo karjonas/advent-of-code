@@ -26,14 +26,26 @@ fn part_two(input: &str) -> usize {
     return sum;
 }
 
-pub fn solve() {
+pub fn solve(filepath: &str) {
     println!(
         "Part one: {}",
-        part_one(common::read_file("2015/day08/input").as_str())
+        part_one(
+            std::fs::read_to_string(filepath)
+                .unwrap()
+                .trim()
+                .to_string()
+                .as_str()
+        )
     );
     println!(
         "Part two: {}",
-        part_two(common::read_file("2015/day08/input").as_str())
+        part_two(
+            std::fs::read_to_string(filepath)
+                .unwrap()
+                .trim()
+                .to_string()
+                .as_str()
+        )
     );
 }
 
@@ -60,5 +72,4 @@ mod tests {
 
         assert_eq!(part_two("\"\"\n\"abc\"\n\"aaa\\\"aaa\"\n\"\\x27\""), 19);
     }
-
 }

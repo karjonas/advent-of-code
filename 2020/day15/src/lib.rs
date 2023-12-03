@@ -33,7 +33,7 @@ fn solve_both(input: &Vec<usize>, num_iterations: usize) -> usize {
     return last_spoken;
 }
 
-pub fn solve() {
+pub fn solve(_filepath: &str) {
     let input = [1, 0, 16, 5, 17, 4].to_vec();
     println!("Part one: {}", solve_both(&input, 2020));
     println!("Part two: {}", solve_both(&input, 30000000));

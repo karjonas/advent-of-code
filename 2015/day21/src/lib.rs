@@ -185,7 +185,7 @@ fn fight(
     return hp_hero > 0;
 }
 
-pub fn solve() {
+pub fn solve(_filepath: &str) {
     let mut best_cost = std::i64::MAX;
     let mut worst_cost = 0;
     let combinations = get_possible_combinations();

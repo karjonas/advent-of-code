@@ -76,8 +76,11 @@ fn solve_internal_p2(input: &String, width: usize) -> i64 {
     return oxygen * carbon;
 }
 
-pub fn solve() {
-    let input = common::read_file("2021/day03/input");
+pub fn solve(filepath: &str) {
+    let input = std::fs::read_to_string(filepath)
+        .unwrap()
+        .trim_end_matches('\n')
+        .to_string();
 
     println!("Part one: {}", solve_internal_p1(&input, 12));
     println!("Part two: {}", solve_internal_p2(&input, 12));

@@ -8,8 +8,8 @@ All solutions are built using rust so you need to have rust and cargo installed.
 cargo run --release
 ```
 
-To run a specific year and day use the ```--year``` and ```--day``` flags:
+To run a specific year, day or input file use the ```--year```, ```--day``` and ```--input``` flags:
 
 ```
-cargo run --release -- --year 2018 --day 12
+cargo run --release -- --year 2018 --day 12 --input myfile.txt
 ```

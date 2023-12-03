@@ -63,14 +63,26 @@ fn solve_internal(input: String, part_two: bool) -> usize {
     return best_score as usize;
 }
 
-pub fn solve() {
+pub fn solve(filepath: &str) {
     println!(
         "Part one: {}",
-        solve_internal(common::read_file("2015/day13/input"), false)
+        solve_internal(
+            std::fs::read_to_string(filepath)
+                .unwrap()
+                .trim()
+                .to_string(),
+            false
+        )
     );
     println!(
         "Part two: {}",
-        solve_internal(common::read_file("2015/day13/input"), true)
+        solve_internal(
+            std::fs::read_to_string(filepath)
+                .unwrap()
+                .trim()
+                .to_string(),
+            true
+        )
     );
 }
 

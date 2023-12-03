@@ -1,4 +1,4 @@
-pub fn solve() {
+pub fn solve(_filepath: &str) {
     let input = 312;
 
     {

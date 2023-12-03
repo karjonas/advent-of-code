@@ -34,8 +34,11 @@ fn part_two(seats: &HashSet<usize>) -> usize {
     panic!("No solution found");
 }
 
-pub fn solve() {
-    let input = common::read_file("2020/day05/input");
+pub fn solve(filepath: &str) {
+    let input = std::fs::read_to_string(filepath)
+        .unwrap()
+        .trim_end_matches('\n')
+        .to_string();
     let seats = parse_input(&input);
     println!("Part one: {}", part_one(&seats));
     println!("Part two: {}", part_two(&seats));

@@ -20,10 +20,10 @@ fn overlaps(a: &AABB, b: &AABB) -> bool {
     return (a.x0 < b.x1 && a.x1 > b.x0) && (a.y0 < b.y1 && a.y1 > b.y0);
 }
 
-pub fn solve() {
-    let input = std::fs::read_to_string("2023/day03/input")
+pub fn solve(filepath: &str) {
+    let input = std::fs::read_to_string(filepath)
         .unwrap()
-        .trim()
+        .trim_end_matches('\n')
         .to_string();
     let grid: Vec<Vec<char>> = input.lines().map(|v| v.chars().collect()).collect();
     let height = grid.len() as i32;

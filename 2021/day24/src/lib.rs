@@ -86,8 +86,13 @@ fn solve_internal(part_two: bool, xyzs: &Vec<(i64, i64, i64)>) -> usize {
         .fold(0, |sum, &v| sum * 10 + v) as usize;
 }
 
-pub fn solve() {
-    let input = parse_input(&common::read_file("2021/day24/input"));
+pub fn solve(filepath: &str) {
+    let input = parse_input(
+        &std::fs::read_to_string(filepath)
+            .unwrap()
+            .trim()
+            .to_string(),
+    );
 
     println!("Part one: {}", solve_internal(false, &input));
     println!("Part two: {}", solve_internal(true, &input));

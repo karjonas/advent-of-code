@@ -77,11 +77,16 @@ fn parse_input(input: String) -> Vec<Moon> {
     return moons;
 }
 
-pub fn solve() {
+pub fn solve(filepath: &str) {
     let part_one;
     let part_two;
     {
-        let mut moons = parse_input(common::read_file("2019/day12/input"));
+        let mut moons = parse_input(
+            std::fs::read_to_string(filepath)
+                .unwrap()
+                .trim()
+                .to_string(),
+        );
         for _i in 0..1000 {
             simulate_step(&mut moons);
         }
@@ -89,7 +94,12 @@ pub fn solve() {
     }
 
     {
-        let moons_start = parse_input(common::read_file("2019/day12/input"));
+        let moons_start = parse_input(
+            std::fs::read_to_string(filepath)
+                .unwrap()
+                .trim()
+                .to_string(),
+        );
         let mut repeats = [0, 0, 0];
 
         for i in 0..3 {

@@ -2,8 +2,11 @@ extern crate common;
 
 use std::collections::HashSet;
 
-pub fn solve() {
-    let contents = common::read_file("2018/day01/input");
+pub fn solve(filepath: &str) {
+    let contents = std::fs::read_to_string(filepath)
+        .unwrap()
+        .trim()
+        .to_string();
     let ints: Vec<i32> = contents
         .lines()
         .map(|v| v.to_string().parse::<i32>().unwrap())

@@ -30,7 +30,7 @@ fn calculate_checksum(input: Vec<bool>) -> Vec<bool> {
     return output;
 }
 
-pub fn solve() {
+pub fn solve(_filepath: &str) {
     {
         let c = generate_dragon_code("10001110011110000".to_string(), 272);
         let cv = calculate_checksum(c);

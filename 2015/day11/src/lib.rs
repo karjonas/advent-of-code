@@ -74,7 +74,7 @@ fn next_valid_password(password: &str) -> String {
     return next;
 }
 
-pub fn solve() {
+pub fn solve(_filepath: &str) {
     let p1 = next_valid_password("hxbxwxba");
     println!("Part one: {}", p1);
     println!("Part two: {}", next_valid_password(p1.as_str()));

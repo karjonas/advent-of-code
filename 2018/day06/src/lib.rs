@@ -116,8 +116,11 @@ fn part_two(vals: Vec<Vec<usize>>) -> usize {
     return num_inside;
 }
 
-pub fn solve() {
-    let input = common::read_file("2018/day06/input")
+pub fn solve(filepath: &str) {
+    let input = std::fs::read_to_string(filepath)
+        .unwrap()
+        .trim()
+        .to_string()
         .chars()
         .filter(|&c| c != ',')
         .collect::<String>();

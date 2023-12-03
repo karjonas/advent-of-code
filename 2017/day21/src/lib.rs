@@ -3,8 +3,6 @@ extern crate regex;
 use regex::Regex;
 
 use std::collections::HashMap;
-use std::fs::File;
-use std::io::prelude::*;
 
 fn reverse_columns(arr: &mut Vec<Vec<char>>) {
     let n = arr.len();
@@ -62,11 +60,11 @@ fn flip_rows(arr: &mut Vec<Vec<char>>) {
     }
 }
 
-pub fn solve() {
-    let mut file = File::open("2017/day21/input").unwrap();
-    let mut contents = String::new();
-    file.read_to_string(&mut contents).unwrap();
-
+pub fn solve(filepath: &str) {
+    let input = std::fs::read_to_string(filepath)
+        .unwrap()
+        .trim_end_matches('\n')
+        .to_string();
     let start = vec![
         vec!['.', '#', '.'],
         vec!['.', '.', '#'],
@@ -75,7 +73,7 @@ pub fn solve() {
     let regex = Regex::new(r"([\.#/]+) => ([\.#/]+)").unwrap();
     let mut rule_map = HashMap::new();
 
-    for line in contents.lines() {
+    for line in input.lines() {
         let cap = regex.captures(line).unwrap();
         let from: Vec<Vec<_>> = cap[1].split('/').map(|v| v.chars().collect()).collect();
         let to: Vec<Vec<_>> = cap[2].split('/').map(|v| v.chars().collect()).collect();

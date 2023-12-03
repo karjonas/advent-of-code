@@ -1,6 +1,4 @@
 use std::collections::HashMap;
-use std::fs::File;
-use std::io::prelude::*;
 
 #[derive(Clone)]
 enum Direction {
@@ -37,12 +35,12 @@ fn turn_around(dir: Direction) -> Direction {
     }
 }
 
-pub fn solve() {
-    let mut file = File::open("2017/day22/input").unwrap();
-    let mut contents = String::new();
-    file.read_to_string(&mut contents).unwrap();
-
-    let grid_in: Vec<Vec<char>> = contents.lines().map(|l| l.chars().collect()).collect();
+pub fn solve(filepath: &str) {
+    let input = std::fs::read_to_string(filepath)
+        .unwrap()
+        .trim_end_matches('\n')
+        .to_string();
+    let grid_in: Vec<Vec<char>> = input.lines().map(|l| l.chars().collect()).collect();
 
     assert!(grid_in.len() % 2 != 0);
     assert!(grid_in[0].len() % 2 != 0);

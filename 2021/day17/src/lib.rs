@@ -53,8 +53,11 @@ fn solve_internal(input: &String) -> (i32, usize) {
     return (max_y, num_hits);
 }
 
-pub fn solve() {
-    let input = common::read_file("2021/day17/input");
+pub fn solve(filepath: &str) {
+    let input = std::fs::read_to_string(filepath)
+        .unwrap()
+        .trim_end_matches('\n')
+        .to_string();
     let (p0, p1) = solve_internal(&input);
     println!("Part one: {}", p0);
     println!("Part two: {}", p1);

@@ -28,7 +28,7 @@ fn solve_internal(input: usize, remove_across: bool) -> usize {
     return elves[0] + 1;
 }
 
-pub fn solve() {
+pub fn solve(_filepath: &str) {
     println!("Part 1: {}", solve_internal(3001330, false));
     println!("Part 2: {}", solve_internal(3001330, true));
 }

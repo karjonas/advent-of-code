@@ -45,8 +45,11 @@ fn solve_both(input: &String) -> (usize, usize) {
     return (visible.len(), best_view);
 }
 
-pub fn solve() {
-    let input = common::read_file("2022/day08/input");
+pub fn solve(filepath: &str) {
+    let input = std::fs::read_to_string(filepath)
+        .unwrap()
+        .trim_end_matches('\n')
+        .to_string();
     let (p0, p1) = solve_both(&input);
     println!("Part one: {}", p0);
     println!("Part two: {}", p1);

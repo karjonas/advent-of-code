@@ -1,6 +1,5 @@
 extern crate common;
 use std::mem;
-const INPUT_PATH: &str = "2015/day18/input";
 
 fn parse_input(input: &str, part_two: bool) -> Vec<Vec<char>> {
     let lines = input.lines().collect::<Vec<_>>();
@@ -112,15 +111,13 @@ fn solve_internal(input: &str, num_iters: usize, part_two: bool) -> usize {
     return calc_value(&grid_next);
 }
 
-pub fn solve() {
-    println!(
-        "Part one: {}",
-        solve_internal(common::read_file(INPUT_PATH).as_str(), 100, false)
-    );
-    println!(
-        "Part two: {}",
-        solve_internal(common::read_file(INPUT_PATH).as_str(), 100, true)
-    );
+pub fn solve(filepath: &str) {
+    let input = std::fs::read_to_string(filepath)
+        .unwrap()
+        .trim_end_matches('\n')
+        .to_string();
+    println!("Part one: {}", solve_internal(input.as_str(), 100, false));
+    println!("Part two: {}", solve_internal(input.as_str(), 100, true));
 }
 
 #[cfg(test)]

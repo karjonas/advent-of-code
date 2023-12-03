@@ -7,8 +7,8 @@ fn calc_insert_index(curr_marble_index: usize, ring_size: usize) -> usize {
     return 1 + ((curr_marble_index + 1) % ring_size);
 }
 
-fn solve_internal(input_file: &str, factor: usize) -> usize {
-    let input: Vec<Vec<String>> = common::read_file(input_file)
+fn solve_internal(input: &String, factor: usize) -> usize {
+    let input: Vec<Vec<String>> = input
         .lines()
         .map(|v| v.split_whitespace().map(|s| s.to_string()).collect())
         .collect();
@@ -48,7 +48,11 @@ fn solve_internal(input_file: &str, factor: usize) -> usize {
     return max_score;
 }
 
-pub fn solve() {
-    println!("Part one: {:?}", solve_internal("2018/day09/input", 1));
-    println!("Part two: {:?}", solve_internal("2018/day09/input", 100));
+pub fn solve(filepath: &str) {
+    let input = std::fs::read_to_string(filepath)
+        .unwrap()
+        .trim_end_matches('\n')
+        .to_string();
+    println!("Part one: {:?}", solve_internal(&input, 1));
+    println!("Part two: {:?}", solve_internal(&input, 100));
 }

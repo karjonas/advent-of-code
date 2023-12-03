@@ -306,8 +306,11 @@ fn solve_paths(paths: Vec<Vec<char>>, map: &mut HashMap<(i64, i64), char>) {
     }
 }
 
-pub fn solve() {
-    let mut chars = common::read_file("2018/day20/input")
+pub fn solve(filepath: &str) {
+    let mut chars = std::fs::read_to_string(filepath)
+        .unwrap()
+        .trim()
+        .to_string()
         .chars()
         .collect::<Vec<char>>();
     chars.remove(0);

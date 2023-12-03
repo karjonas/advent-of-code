@@ -1,6 +1,3 @@
-use std::fs::File;
-use std::io::prelude::*;
-
 enum Direction {
     Up,
     Down,
@@ -8,12 +5,13 @@ enum Direction {
     Right,
 }
 
-pub fn solve() {
-    let mut file = File::open("2017/day19/input").unwrap();
-    let mut contents = String::new();
-    file.read_to_string(&mut contents).unwrap();
+pub fn solve(filepath: &str) {
+    let input = std::fs::read_to_string(filepath)
+        .unwrap()
+        .trim_end_matches('\n')
+        .to_string();
 
-    let grid: Vec<Vec<char>> = contents.split('\n').map(|v| v.chars().collect()).collect();
+    let grid: Vec<Vec<char>> = input.split('\n').map(|v| v.chars().collect()).collect();
 
     let start_row = 0;
     let mut start_col = 0;

@@ -2,8 +2,6 @@ extern crate regex;
 
 use regex::Regex;
 use std::collections::HashMap;
-use std::fs::File;
-use std::io::prelude::*;
 
 struct Entry {
     enc_name: String,
@@ -55,17 +53,17 @@ fn decrypt_entry(entry: &Entry) -> String {
     return dec_str;
 }
 
-pub fn solve() {
-    let mut file = File::open("2016/day04/input").unwrap();
-    let mut contents = String::new();
-    file.read_to_string(&mut contents).unwrap();
-
+pub fn solve(filepath: &str) {
+    let input = std::fs::read_to_string(filepath)
+        .unwrap()
+        .trim_end_matches('\n')
+        .to_string();
     let re = Regex::new(r"(.*)-(\w+)\[(\w+)\]").unwrap();
 
     let mut sum = 0;
     let mut npo_id = 0;
 
-    for line in contents.lines() {
+    for line in input.lines() {
         let cap = re.captures(line).unwrap();
 
         let sect = cap[2].parse::<i32>().unwrap();

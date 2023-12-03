@@ -95,8 +95,11 @@ fn part_two(input: &Instructions) -> usize {
     return flipped.len();
 }
 
-pub fn solve() {
-    let input = common::read_file("2020/day24/input");
+pub fn solve(filepath: &str) {
+    let input = std::fs::read_to_string(filepath)
+        .unwrap()
+        .trim_end_matches('\n')
+        .to_string();
     println!("Part one: {}", part_one(&parse_input(&input)));
     println!("Part two: {}", part_two(&parse_input(&input)));
 }

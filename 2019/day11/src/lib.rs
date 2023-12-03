@@ -92,8 +92,11 @@ fn draw_map(map: HashMap<(i64, i64), i64>) -> String {
     return s;
 }
 
-pub fn solve() {
-    let input = common::read_file("2019/day11/input");
+pub fn solve(filepath: &str) {
+    let input = std::fs::read_to_string(filepath)
+        .unwrap()
+        .trim_end_matches('\n')
+        .to_string();
     let map_first = run_painter(intcode::parse_input(input.as_str()), COLOR_BLACK);
     let map_second = run_painter(intcode::parse_input(input.as_str()), COLOR_WHITE);
 

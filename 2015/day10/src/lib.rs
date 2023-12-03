@@ -24,7 +24,7 @@ fn next_sequence(in_seq: &[i8]) -> Vec<i8> {
     result
 }
 
-pub fn solve() {
+pub fn solve(_filepath: &str) {
     let mut seq = INPUT.to_vec();
     for _i in 0..40 {
         seq = next_sequence(&seq);

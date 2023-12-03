@@ -19,7 +19,7 @@ fn solve_internal(presents_per_elf: usize, houses_per_elf: usize) -> usize {
     return 0;
 }
 
-pub fn solve() {
+pub fn solve(_filepath: &str) {
     println!("Part one: {}", solve_internal(10, std::usize::MAX));
     println!("Part two: {}", solve_internal(11, 50));
 }

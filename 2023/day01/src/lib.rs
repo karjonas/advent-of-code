@@ -63,10 +63,10 @@ fn part_two(input: &String) -> u32 {
         .sum();
 }
 
-pub fn solve() {
-    let input = std::fs::read_to_string("2023/day01/input")
+pub fn solve(filepath: &str) {
+    let input = std::fs::read_to_string(filepath)
         .unwrap()
-        .trim()
+        .trim_end_matches('\n')
         .to_string();
 
     println!("Part one: {}", part_one(&input));

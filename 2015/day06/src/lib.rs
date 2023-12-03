@@ -63,14 +63,26 @@ fn solve_internal(input: &String, part_one: bool) -> usize {
     return ctr;
 }
 
-pub fn solve() {
+pub fn solve(filepath: &str) {
     println!(
         "Part one: {}",
-        solve_internal(&common::read_file("2015/day06/input"), true)
+        solve_internal(
+            &std::fs::read_to_string(filepath)
+                .unwrap()
+                .trim()
+                .to_string(),
+            true
+        )
     );
     println!(
         "Part two: {}",
-        solve_internal(&common::read_file("2015/day06/input"), false)
+        solve_internal(
+            &std::fs::read_to_string(filepath)
+                .unwrap()
+                .trim()
+                .to_string(),
+            false
+        )
     );
 }
 
@@ -93,5 +105,4 @@ mod tests {
 
     #[test]
     fn test_samples_part_two() {}
-
 }

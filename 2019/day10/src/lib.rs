@@ -141,8 +141,14 @@ fn solve_part_two(asteroids: &Vec<Point>, pos: Point) -> Vec<Point> {
     return order;
 }
 
-pub fn solve() {
-    let input = parse_input(common::read_file("2019/day10/input").as_str());
+pub fn solve(filepath: &str) {
+    let input = parse_input(
+        std::fs::read_to_string(filepath)
+            .unwrap()
+            .trim()
+            .to_string()
+            .as_str(),
+    );
     let (x, y, v) = solve_input(&input);
     let p = solve_part_two(&input, (x, y))[199];
     let part2 = (p.0 * 100) + p.1;

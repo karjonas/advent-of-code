@@ -40,8 +40,7 @@ fn do_step(state: &mut Vec<char>, rules: &Vec<Rule>) {
     }
 }
 
-fn parse_input(input_path: &str) -> (Vec<char>, Vec<Rule>) {
-    let input = common::read_file(input_path);
+fn parse_input(input: &String) -> (Vec<char>, Vec<Rule>) {
     let lines = input
         .lines()
         .map(|v| v.to_string())
@@ -104,8 +103,12 @@ fn part_two(state: &mut Vec<char>, rules: &Vec<Rule>) -> String {
     }
 }
 
-pub fn solve() {
-    let (mut state, rules) = parse_input("2018/day12/input");
+pub fn solve(filepath: &str) {
+    let input = std::fs::read_to_string(filepath)
+        .unwrap()
+        .trim_end_matches('\n')
+        .to_string();
+    let (mut state, rules) = parse_input(&input);
     println!("Part one: {}", part_one(&mut state.clone(), &rules));
     println!("Part two: {}", part_two(&mut state, &rules));
 }

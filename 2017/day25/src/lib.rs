@@ -1,6 +1,4 @@
 use std::collections::HashMap;
-use std::fs::File;
-use std::io::prelude::*;
 
 #[derive(Clone, Debug)]
 struct State {
@@ -14,11 +12,12 @@ struct State {
     if_zero_goto_state: char,
 }
 
-fn parse_input(start_state: &mut char, diagnostic_after: &mut usize) -> HashMap<char, State> {
-    let mut file = File::open("2017/day25/input").unwrap();
-    let mut contents = String::new();
-    file.read_to_string(&mut contents).unwrap();
-    contents = contents.chars().filter(|&v| v != '.' && v != ':').collect();
+fn parse_input(
+    input: &String,
+    start_state: &mut char,
+    diagnostic_after: &mut usize,
+) -> HashMap<char, State> {
+    let contents: String = input.chars().filter(|&v| v != '.' && v != ':').collect();
 
     let lines: Vec<Vec<_>> = contents
         .trim()
@@ -73,10 +72,14 @@ fn parse_input(start_state: &mut char, diagnostic_after: &mut usize) -> HashMap<
     return states;
 }
 
-pub fn solve() {
+pub fn solve(filepath: &str) {
+    let input = std::fs::read_to_string(filepath)
+        .unwrap()
+        .trim_end_matches('\n')
+        .to_string();
     let mut start_state = 'A';
     let mut diagnostic_after = 0;
-    let states = parse_input(&mut start_state, &mut diagnostic_after);
+    let states = parse_input(&input, &mut start_state, &mut diagnostic_after);
     let mut tape = HashMap::<i32, usize>::new();
 
     let mut curr_state = start_state;

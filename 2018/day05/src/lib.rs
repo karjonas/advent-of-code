@@ -46,8 +46,13 @@ fn react(chars: Vec<char>) -> usize {
         .fold(0, |sum, &val| if val { sum + 1 } else { sum });
 }
 
-pub fn solve() {
-    let input = common::read_file("2018/day05/input").trim().to_string();
+pub fn solve(filepath: &str) {
+    let input = std::fs::read_to_string(filepath)
+        .unwrap()
+        .trim()
+        .to_string()
+        .trim()
+        .to_string();
     let chars: Vec<char> = input.chars().collect();
     println!("Part one: {:?}", react(chars.clone()));
 

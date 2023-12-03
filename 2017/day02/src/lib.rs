@@ -1,12 +1,9 @@
-use std::fs::File;
-use std::io::prelude::*;
-
-pub fn solve() {
-    let mut file = File::open("2017/day02/input").unwrap();
-    let mut contents = String::new();
-    file.read_to_string(&mut contents).unwrap();
-
-    let int_lines: Vec<Vec<usize>> = contents
+pub fn solve(filepath: &str) {
+    let input = std::fs::read_to_string(filepath)
+        .unwrap()
+        .trim_end_matches('\n')
+        .to_string();
+    let int_lines: Vec<Vec<usize>> = input
         .trim()
         .split('\n')
         .map(|line| {

@@ -1,10 +1,8 @@
 extern crate common;
 use std::mem;
-const INPUT_PATH: &str = "2018/day18/input";
 const GRID_SIZE: usize = 50;
 
-fn parse_input() -> Vec<char> {
-    let input = common::read_file(INPUT_PATH);
+fn parse_input(input: &String) -> Vec<char> {
     let lines = input.lines().collect::<Vec<_>>();
     let mut ret = Vec::new();
     for line in lines {
@@ -121,8 +119,8 @@ fn grid_equal(a: &Vec<char>, b: &Vec<char>) -> bool {
     return true;
 }
 
-fn solve_internal(num_iters_in: usize) -> usize {
-    let grid = parse_input();
+fn solve_internal(num_iters_in: usize, input: &String) -> usize {
+    let grid = parse_input(input);
     let mut num_iters = num_iters_in;
 
     let mut grid_next = grid.clone();
@@ -159,7 +157,12 @@ fn solve_internal(num_iters_in: usize) -> usize {
     return calc_value(&grid_next);
 }
 
-pub fn solve() {
-    println!("Part one: {}", solve_internal(10));
-    println!("Part two: {}", solve_internal(1000000000));
+pub fn solve(filepath: &str) {
+    let input = std::fs::read_to_string(filepath)
+        .unwrap()
+        .trim_end_matches('\n')
+        .to_string();
+
+    println!("Part one: {}", solve_internal(10, &input));
+    println!("Part two: {}", solve_internal(1000000000, &input));
 }

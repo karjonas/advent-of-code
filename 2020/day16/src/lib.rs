@@ -161,8 +161,13 @@ fn part_two(input: &Input) -> usize {
     });
 }
 
-pub fn solve() {
-    let input = parse_input(&common::read_file("2020/day16/input"));
+pub fn solve(filepath: &str) {
+    let input = parse_input(
+        &std::fs::read_to_string(filepath)
+            .unwrap()
+            .trim()
+            .to_string(),
+    );
 
     println!("Part one: {}", part_one(&input));
     println!("Part two: {}", part_two(&input));

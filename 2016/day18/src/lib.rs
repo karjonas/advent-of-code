@@ -1,6 +1,3 @@
-use std::fs::File;
-use std::io::prelude::*;
-
 fn is_trap(r: usize, c: usize, num_cols: usize, grid: &Vec<Vec<bool>>) -> bool {
     let left = if c == 0 { false } else { grid[r - 1][c - 1] };
     let center = grid[r - 1][c];
@@ -33,12 +30,8 @@ fn generate_rows(start: Vec<bool>, num_rows_inclusive: usize) -> Vec<Vec<bool>> 
     return output;
 }
 
-fn solve_internal(path: &str, rows: usize) -> usize {
-    let mut file = File::open(path).unwrap();
-    let mut contents = String::new();
-    file.read_to_string(&mut contents).unwrap();
-
-    let start: Vec<bool> = contents
+fn solve_internal(input: &String, rows: usize) -> usize {
+    let start: Vec<bool> = input
         .chars()
         .filter(|&c| c == '.' || c == '^')
         .map(|c| c == '^')
@@ -50,7 +43,11 @@ fn solve_internal(path: &str, rows: usize) -> usize {
     return nums;
 }
 
-pub fn solve() {
-    println!("Part 1: {}", solve_internal("2016/day18/input", 40));
-    println!("Part 2: {}", solve_internal("2016/day18/input", 400000));
+pub fn solve(filepath: &str) {
+    let input = std::fs::read_to_string(filepath)
+        .unwrap()
+        .trim_end_matches('\n')
+        .to_string();
+    println!("Part 1: {}", solve_internal(&input, 40));
+    println!("Part 2: {}", solve_internal(&input, 400000));
 }

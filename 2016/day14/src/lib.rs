@@ -88,7 +88,7 @@ fn solve_internal(num_repeats: usize) -> usize {
     return 0;
 }
 
-pub fn solve() {
+pub fn solve(_filepath: &str) {
     println!("Part 1: {}", solve_internal(0));
     println!("Part 2: {}", solve_internal(2016));
 }

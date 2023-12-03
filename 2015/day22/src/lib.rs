@@ -214,7 +214,7 @@ fn fight_recursive(game_in: &Game) -> (bool, Game) {
     return (win, best_game);
 }
 
-pub fn solve() {
+pub fn solve(_filepath: &str) {
     let base_game = Game {
         hero_hitpoints: HERO_HIT_POINTS,
         hero_mana: HERO_MANA,

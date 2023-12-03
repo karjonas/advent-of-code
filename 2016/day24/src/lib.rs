@@ -1,6 +1,3 @@
-use std::fs::File;
-use std::io::prelude::*;
-
 #[derive(Debug, Clone)]
 struct Map {
     width: usize,
@@ -136,12 +133,12 @@ fn calc_distances(map: &mut Map) {
     }
 }
 
-pub fn solve() {
-    let mut file = File::open("2016/day24/input").unwrap();
-    let mut contents = String::new();
-    file.read_to_string(&mut contents).unwrap();
-
-    let map = parse_map(contents);
+pub fn solve(filepath: &str) {
+    let input = std::fs::read_to_string(filepath)
+        .unwrap()
+        .trim_end_matches('\n')
+        .to_string();
+    let map = parse_map(input);
     {
         let mut visited: Vec<bool> = Vec::new();
         visited.resize(map.dist_scalars.len(), false);

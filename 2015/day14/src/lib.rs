@@ -78,8 +78,11 @@ fn solve_internal(reindeers: &Vec<Reindeer>, end_time: usize) -> (usize, usize) 
     return (best_dist, best_points);
 }
 
-pub fn solve() {
-    let input = common::read_file("2015/day14/input");
+pub fn solve(filepath: &str) {
+    let input = std::fs::read_to_string(filepath)
+        .unwrap()
+        .trim_end_matches('\n')
+        .to_string();
     let (p1, p2) = solve_internal(&parse(&input.to_string()), 2503);
     println!("Part one: {}", p1);
     println!("Part two: {}", p2);

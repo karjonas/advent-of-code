@@ -84,8 +84,11 @@ fn solve_internal_p2(input: &String) -> usize {
     return sums[0] * sums[1] * sums[2];
 }
 
-pub fn solve() {
-    let input = common::read_file("2021/day09/input");
+pub fn solve(filepath: &str) {
+    let input = std::fs::read_to_string(filepath)
+        .unwrap()
+        .trim_end_matches('\n')
+        .to_string();
     println!("Part one: {}", solve_internal_p1(&input));
     println!("Part two: {}", solve_internal_p2(&input));
 }

@@ -1,6 +1,4 @@
 use std::collections::HashMap;
-use std::fs::File;
-use std::io::prelude::*;
 use std::mem;
 
 enum Instruction {
@@ -137,12 +135,13 @@ fn calc_hash(instrs: &Vec<Instruction>, reps: usize) -> String {
     return s;
 }
 
-pub fn solve() {
-    let mut file = File::open("2017/day16/input").unwrap();
-    let mut contents = String::new();
-    file.read_to_string(&mut contents).unwrap();
+pub fn solve(filepath: &str) {
+    let input = std::fs::read_to_string(filepath)
+        .unwrap()
+        .trim_end_matches('\n')
+        .to_string();
 
-    let cmds: Vec<_> = contents.split(',').map(|v| v.to_string()).collect();
+    let cmds: Vec<_> = input.split(',').map(|v| v.to_string()).collect();
 
     let instrs = collect_instructions(cmds);
 

@@ -254,8 +254,11 @@ fn solve_grid(grid_start: Grid, count_levels: bool) -> usize {
     panic!("Could not find solution");
 }
 
-pub fn solve() {
-    let input = common::read_file("2019/day20/input");
+pub fn solve(filepath: &str) {
+    let input = std::fs::read_to_string(filepath)
+        .unwrap()
+        .trim_end_matches('\n')
+        .to_string();
     println!(
         "Part one: {}",
         solve_grid(parse_input(input.clone()), false)

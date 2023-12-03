@@ -40,7 +40,7 @@ fn solve_internal() -> (usize, usize) {
     }
 }
 
-pub fn solve() {
+pub fn solve(_filepath: &str) {
     let (p0, p1) = solve_internal();
     println!("Part one: {}", p0);
     println!("Part two: {}", p1);

@@ -108,8 +108,11 @@ fn part_two(nodes: &HashMap<String, FileNode>) -> usize {
     return best_fit;
 }
 
-pub fn solve() {
-    let input = common::read_file("2022/day07/input");
+pub fn solve(filepath: &str) {
+    let input = std::fs::read_to_string(filepath)
+        .unwrap()
+        .trim_end_matches('\n')
+        .to_string();
     let nodes = parse_directories(&input);
     println!("Part one: {}", part_one(&nodes));
     println!("Part two: {}", part_two(&nodes));

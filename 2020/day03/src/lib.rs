@@ -35,8 +35,11 @@ fn part_two(grid: &GridT) -> usize {
         * solve_grid(&grid, 1, 2);
 }
 
-pub fn solve() {
-    let input = common::read_file("2020/day03/input");
+pub fn solve(filepath: &str) {
+    let input = std::fs::read_to_string(filepath)
+        .unwrap()
+        .trim_end_matches('\n')
+        .to_string();
     let grid = parse_input(&input);
     println!("Part one: {}", part_one(&grid));
     println!("Part two: {}", part_two(&grid));

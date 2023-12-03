@@ -78,10 +78,10 @@ fn part_two(games: &Vec<Vec<Turn>>) -> usize {
     return sum;
 }
 
-pub fn solve() {
-    let input = std::fs::read_to_string("2023/day02/input")
+pub fn solve(filepath: &str) {
+    let input = std::fs::read_to_string(filepath)
         .unwrap()
-        .trim()
+        .trim_end_matches('\n')
         .to_string();
     let games = parse(input);
 

@@ -66,8 +66,11 @@ fn part_two(nodes: &NodeMap) -> usize {
     return count_recursive(nodes, &nodes.get("shiny gold").unwrap()) - 1;
 }
 
-pub fn solve() {
-    let input = common::read_file("2020/day07/input");
+pub fn solve(filepath: &str) {
+    let input = std::fs::read_to_string(filepath)
+        .unwrap()
+        .trim_end_matches('\n')
+        .to_string();
     let map = parse_input(&input);
     println!("Part one: {}", part_one(&map));
     println!("Part two: {}", part_two(&map));

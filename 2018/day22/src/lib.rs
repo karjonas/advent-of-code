@@ -182,7 +182,7 @@ fn part_two() {
     println!("Part two: {}", dists[INPUT.2][INPUT.1][1]);
 }
 
-pub fn solve() {
+pub fn solve(_filepath: &str) {
     part_one();
     part_two();
 }

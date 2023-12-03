@@ -31,8 +31,11 @@ fn solve_internal(input: &String, goal_sum: usize) -> (usize, usize) {
     return (num_matched, num_matched_min);
 }
 
-pub fn solve() {
-    let input = common::read_file("2015/day17/input");
+pub fn solve(filepath: &str) {
+    let input = std::fs::read_to_string(filepath)
+        .unwrap()
+        .trim_end_matches('\n')
+        .to_string();
     let (p1, p2) = solve_internal(&input, GOAL_SUM);
     println!("Part one: {}", p1);
     println!("Part two: {}", p2);

@@ -119,7 +119,7 @@ fn solve_p2(input: i32) {
     println!("Part two: {}", goal_value);
 }
 
-pub fn solve() {
+pub fn solve(_filepath: &str) {
     let input = 289326;
     solve_p1(input.clone());
     solve_p2(input.clone());

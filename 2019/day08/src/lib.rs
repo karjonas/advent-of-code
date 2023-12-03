@@ -8,8 +8,8 @@ const PIXEL_BLACK: u8 = 0;
 const PIXEL_WHITE: u8 = 1;
 // const PIXEL_TRANS: u8 = 2;
 
-fn parse_input() -> Vec<Vec<u8>> {
-    let input: Vec<u8> = common::read_file("2019/day08/input")
+fn parse_input(input_string: &String) -> Vec<Vec<u8>> {
+    let input: Vec<u8> = input_string
         .chars()
         .map(|v| common::char_to_u8(v))
         .collect();
@@ -29,8 +29,8 @@ fn parse_input() -> Vec<Vec<u8>> {
     return layers;
 }
 
-fn solve_part_one() -> usize {
-    let layers = parse_input();
+fn solve_part_one(input: &String) -> usize {
+    let layers = parse_input(input);
     let mut layer_id_fewest_zeroes = 0;
     let mut num_zeroes = std::usize::MAX;
     for layer_idx in 0..layers.len() {
@@ -53,8 +53,8 @@ fn solve_part_one() -> usize {
     return num_ones * num_twos;
 }
 
-fn solve_part_two() -> String {
-    let layers = parse_input();
+fn solve_part_two(input: &String) -> String {
+    let layers = parse_input(input);
     let mut result = String::new();
 
     for i in 0..LAYER_SIZE {
@@ -76,7 +76,11 @@ fn solve_part_two() -> String {
     return result;
 }
 
-pub fn solve() {
-    println!("Part one: {}", solve_part_one());
-    println!("Part two:{}", solve_part_two());
+pub fn solve(filepath: &str) {
+    let input = std::fs::read_to_string(filepath)
+        .unwrap()
+        .trim_end_matches('\n')
+        .to_string();
+    println!("Part one: {}", solve_part_one(&input));
+    println!("Part two:{}", solve_part_two(&input));
 }

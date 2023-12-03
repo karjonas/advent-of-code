@@ -1,6 +1,3 @@
-use std::fs::File;
-use std::io::prelude::*;
-
 fn execute(mut lines: Vec<i32>, part_one: bool) -> usize {
     let mut p = 0;
     let n = lines.len();
@@ -20,12 +17,13 @@ fn execute(mut lines: Vec<i32>, part_one: bool) -> usize {
     return acc;
 }
 
-pub fn solve() {
-    let mut file = File::open("2017/day05/input").unwrap();
-    let mut contents = String::new();
-    file.read_to_string(&mut contents).unwrap();
+pub fn solve(filepath: &str) {
+    let input = std::fs::read_to_string(filepath)
+        .unwrap()
+        .trim_end_matches('\n')
+        .to_string();
 
-    let lines: Vec<i32> = contents
+    let lines: Vec<i32> = input
         .trim()
         .split('\n')
         .map(|line| line.to_string().parse::<i32>().unwrap())

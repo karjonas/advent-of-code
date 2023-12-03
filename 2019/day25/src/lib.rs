@@ -311,8 +311,11 @@ fn create_network(memory: Vec<i64>) -> Network {
     return network;
 }
 
-pub fn solve() {
-    let input = common::read_file("2019/day25/input");
+pub fn solve(filepath: &str) {
+    let input = std::fs::read_to_string(filepath)
+        .unwrap()
+        .trim_end_matches('\n')
+        .to_string();
     let memory = intcode::parse_input(input.as_str());
     let network = create_network(memory.clone());
 

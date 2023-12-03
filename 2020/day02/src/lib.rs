@@ -4,8 +4,8 @@ extern crate scan_fmt;
 
 type PasswordT = (i64, i64, char, String);
 
-fn parse_passwords() -> Vec<PasswordT> {
-    return common::read_file("2020/day02/input")
+fn parse_passwords(input: String) -> Vec<PasswordT> {
+    return input
         .lines()
         .map(|line| scan_fmt!(line, "{d}-{d} {}: {}", i64, i64, char, String).unwrap())
         .collect();
@@ -35,8 +35,12 @@ fn solve_second(passwords: &Vec<PasswordT>) -> usize {
     return count;
 }
 
-pub fn solve() {
-    let passwords = parse_passwords();
+pub fn solve(filepath: &str) {
+    let input = std::fs::read_to_string(filepath)
+        .unwrap()
+        .trim_end_matches('\n')
+        .to_string();
+    let passwords = parse_passwords(input);
     println!("Part one: {:?}", solve_first(&passwords));
     println!("Part two: {:?}", solve_second(&passwords));
 }

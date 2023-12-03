@@ -94,8 +94,13 @@ fn part_two(input: &Game) -> usize {
     return calc_winner_sum(if p0.is_empty() { &p1 } else { &p0 });
 }
 
-pub fn solve() {
-    let input = parse_input(&common::read_file("2020/day22/input"));
+pub fn solve(filepath: &str) {
+    let input = parse_input(
+        &std::fs::read_to_string(filepath)
+            .unwrap()
+            .trim()
+            .to_string(),
+    );
 
     println!("Part one: {}", part_one(&input));
     println!("Part two: {}", part_two(&input));

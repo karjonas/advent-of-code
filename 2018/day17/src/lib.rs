@@ -3,11 +3,9 @@ extern crate regex;
 
 use regex::Regex;
 
-const INPUT_PATH: &str = "2018/day17/input";
 const SOURCE_POS: usize = 500;
 
-fn parse_input() -> Vec<Vec<char>> {
-    let input = common::read_file(INPUT_PATH);
+fn parse_input(input: &String) -> Vec<Vec<char>> {
     let lines = input.lines().collect::<Vec<_>>();
 
     let re = Regex::new(r"(\w)=(\d+), (\w)=(\d+)..(\d+)").unwrap();
@@ -113,8 +111,13 @@ fn fill(grid: &mut Vec<Vec<char>>, x: usize, y: usize, dir: i64) -> usize {
     return x;
 }
 
-pub fn solve() {
-    let mut grid = parse_input();
+pub fn solve(filepath: &str) {
+    let input = std::fs::read_to_string(filepath)
+        .unwrap()
+        .trim_end_matches('\n')
+        .to_string();
+
+    let mut grid = parse_input(&input);
     let height = grid.len();
     let width = grid[0].len();
 

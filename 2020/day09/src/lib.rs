@@ -60,8 +60,11 @@ fn part_two(numbers: &Vec<usize>) -> usize {
     return solve_numbers_p2(numbers, 25) as usize;
 }
 
-pub fn solve() {
-    let input = common::read_file("2020/day09/input");
+pub fn solve(filepath: &str) {
+    let input = std::fs::read_to_string(filepath)
+        .unwrap()
+        .trim_end_matches('\n')
+        .to_string();
     let numbers = parse_input(&input);
     println!("Part one: {}", part_one(&numbers));
     println!("Part two: {}", part_two(&numbers));

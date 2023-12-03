@@ -1,8 +1,6 @@
 extern crate regex;
 
 use regex::Regex;
-use std::fs::File;
-use std::io::prelude::*;
 
 #[derive(Debug)]
 struct Disc {
@@ -44,12 +42,8 @@ fn discs_solved(time: usize, discs: &Vec<Disc>) -> bool {
     return true;
 }
 
-fn solve_internal(path: &str) -> usize {
-    let mut file = File::open(path).unwrap();
-    let mut contents = String::new();
-    file.read_to_string(&mut contents).unwrap();
-
-    let discs = parse_input(contents);
+fn solve_internal(input: String) -> usize {
+    let discs = parse_input(input);
 
     for i in 0.. {
         if discs_solved(i, &discs) {
@@ -59,7 +53,11 @@ fn solve_internal(path: &str) -> usize {
     return 0;
 }
 
-pub fn solve() {
-    println!("Part 1: {:?}", solve_internal("2016/day15/input"));
-    println!("Part 2: {:?}", solve_internal("2016/day15/input2"));
+pub fn solve(filepath: &str) {
+    let input = std::fs::read_to_string(filepath)
+        .unwrap()
+        .trim_end_matches('\n')
+        .to_string();
+    println!("Part 1: {:?}", solve_internal(input.clone()));
+    println!("Part 2: {:?}", solve_internal(input));
 }

@@ -1,6 +1,3 @@
-use std::fs::File;
-use std::io::prelude::*;
-
 fn hash_sparse(num_reps: usize, input: Vec<usize>) -> Vec<usize> {
     let hash_len = 256;
 
@@ -68,18 +65,18 @@ pub fn knot_hash(contents: String, binary: bool) -> String {
     return strs;
 }
 
-pub fn solve() {
-    let mut file = File::open("2017/day10/input").unwrap();
-    let mut contents = String::new();
-    file.read_to_string(&mut contents).unwrap();
-
-    let input_p1: Vec<_> = contents
+pub fn solve(filepath: &str) {
+    let input = std::fs::read_to_string(filepath)
+        .unwrap()
+        .trim_end_matches('\n')
+        .to_string();
+    let input_p1: Vec<_> = input
         .split(',')
         .map(|s| s.to_string().parse::<usize>().unwrap())
         .collect();
 
     let hash_vec_p1 = hash_sparse(1, input_p1);
-    let hash = knot_hash(contents, false);
+    let hash = knot_hash(input, false);
 
     println!("Part one: {:?}", hash_vec_p1[0] * hash_vec_p1[1]);
     println!("Part two: {}", hash);

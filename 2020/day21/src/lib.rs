@@ -101,8 +101,13 @@ fn part_two(input: &Vec<Food>) -> String {
     return solve_both(input).1;
 }
 
-pub fn solve() {
-    let input = parse_input(&common::read_file("2020/day21/input"));
+pub fn solve(filepath: &str) {
+    let input = parse_input(
+        &std::fs::read_to_string(filepath)
+            .unwrap()
+            .trim()
+            .to_string(),
+    );
 
     println!("Part one: {}", part_one(&input));
     println!("Part two: {}", part_two(&input));

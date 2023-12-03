@@ -28,8 +28,11 @@ fn sum_recursive(value: &Value, ignore_red: bool) -> i64 {
     }
 }
 
-pub fn solve() {
-    let input = common::read_file("2015/day12/input");
+pub fn solve(filepath: &str) {
+    let input = std::fs::read_to_string(filepath)
+        .unwrap()
+        .trim_end_matches('\n')
+        .to_string();
     println!(
         "Part one: {}",
         sum_recursive(&serde_json::from_str(&input.as_str()).unwrap(), false)

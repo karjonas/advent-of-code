@@ -36,8 +36,11 @@ fn find_node_recursive(index: usize, input: &Vec<usize>) -> (usize, usize, usize
     return (index_next, value, metadata_sum_total);
 }
 
-pub fn solve() {
-    let input: Vec<usize> = common::read_file("2018/day08/input")
+pub fn solve(filepath: &str) {
+    let input: Vec<usize> = std::fs::read_to_string(filepath)
+        .unwrap()
+        .trim()
+        .to_string()
         .split_whitespace()
         .map(|v| v.to_string().parse::<usize>().unwrap())
         .collect();

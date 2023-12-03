@@ -1,6 +1,3 @@
-use std::fs::File;
-use std::io::prelude::*;
-
 struct Entry {
     free_strs: Vec<String>,
     bracket_strs: Vec<String>,
@@ -97,15 +94,16 @@ fn verify_entry(entry: &Entry) -> bool {
     return num_abbas_free > 0 && num_abbas_boxed == 0;
 }
 
-pub fn solve() {
-    let mut file = File::open("2016/day07/input").unwrap();
-    let mut contents = String::new();
-    file.read_to_string(&mut contents).unwrap();
+pub fn solve(filepath: &str) {
+    let input = std::fs::read_to_string(filepath)
+        .unwrap()
+        .trim_end_matches('\n')
+        .to_string();
 
     let mut num_ok = 0;
     let mut num_ssl = 0;
 
-    for line in contents.lines() {
+    for line in input.lines() {
         let entry = parse_entry(line);
         let ok = verify_entry(&entry);
         num_ok += if ok { 1 } else { 0 };

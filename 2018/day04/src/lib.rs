@@ -2,8 +2,11 @@ extern crate common;
 
 use std::collections::HashMap;
 
-pub fn solve() {
-    let input = common::read_file("2018/day04/input");
+pub fn solve(filepath: &str) {
+    let input = std::fs::read_to_string(filepath)
+        .unwrap()
+        .trim_end_matches('\n')
+        .to_string();
 
     let mut lines: Vec<String> = input.lines().map(|v| v.to_string()).collect();
     lines.sort();

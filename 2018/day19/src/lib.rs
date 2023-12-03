@@ -1,7 +1,5 @@
 extern crate common;
 
-const INPUT_PATH: &str = "2018/day19/input";
-
 #[derive(Debug, Clone, PartialEq)]
 enum Instruction {
     Addr,
@@ -81,8 +79,7 @@ fn string_to_instruction(name: &str) -> Instruction {
     return Instruction::Addr;
 }
 
-fn parse_input() -> (Vec<InstructionExecutor>, usize) {
-    let input = common::read_file(INPUT_PATH);
+fn parse_input(input: &String) -> (Vec<InstructionExecutor>, usize) {
     let lines = input.lines().collect::<Vec<_>>();
     let num_lines = lines.len();
 
@@ -162,8 +159,8 @@ fn part_two() {
     println!("Part two: {}", result);
 }
 
-fn part_one() {
-    let (instrs, ipr) = parse_input();
+fn part_one(input: &String) {
+    let (instrs, ipr) = parse_input(input);
 
     let num_instructions = instrs.len();
     let mut cip = 0;
@@ -183,7 +180,11 @@ fn part_one() {
     println!("Part one: {:?}", state[0]);
 }
 
-pub fn solve() {
-    part_one();
+pub fn solve(filepath: &str) {
+    let input = std::fs::read_to_string(filepath)
+        .unwrap()
+        .trim_end_matches('\n')
+        .to_string();
+    part_one(&input);
     part_two();
 }

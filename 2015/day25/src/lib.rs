@@ -29,7 +29,7 @@ fn calc_value(row: usize, column: usize) -> usize {
     }
 }
 
-pub fn solve() {
+pub fn solve(_filepath: &str) {
     println!("Part one: {}", calc_value(INPUT_ROW, INPUT_COLUMN));
 }
 

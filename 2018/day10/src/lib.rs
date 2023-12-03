@@ -3,8 +3,6 @@ extern crate regex;
 
 use regex::Regex;
 
-const INPUT_FILE: &str = "2018/day10/input";
-
 #[derive(Clone, Debug)]
 struct Dot {
     position: (i64, i64),
@@ -60,8 +58,11 @@ fn print_board(dots: &Vec<Dot>, min_bounding_box: (usize, usize)) -> bool {
     return true;
 }
 
-pub fn solve() {
-    let input = common::read_file(INPUT_FILE);
+pub fn solve(filepath: &str) {
+    let input = std::fs::read_to_string(filepath)
+        .unwrap()
+        .trim_end_matches('\n')
+        .to_string();
     let re = Regex::new(r"position=<(.*), (.*)> velocity=<(.*), (.*)>").unwrap();
 
     let mut dots = Vec::new();

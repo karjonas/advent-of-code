@@ -77,7 +77,7 @@ fn calc_dist_and_num_visited(
     return (ret_val, num_visited);
 }
 
-pub fn solve() {
+pub fn solve(_filepath: &str) {
     let g = calc_grid(1362);
     let (dist, _) = calc_dist_and_num_visited((1, 1), (31, 39), GRID_SIZE, g);
     let (_, visited) = calc_dist_and_num_visited((1, 1), (31, 39), 50, g);

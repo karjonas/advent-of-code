@@ -64,8 +64,11 @@ fn calc_dist(input_str: &str) -> usize {
     return 0;
 }
 
-pub fn solve() {
-    let input = common::read_file("2019/day06/input");
+pub fn solve(filepath: &str) {
+    let input = std::fs::read_to_string(filepath)
+        .unwrap()
+        .trim_end_matches('\n')
+        .to_string();
     println!("Part one: {}", calc_indirect(input.as_str()));
     println!("Part two: {}", calc_dist(input.as_str()));
 }

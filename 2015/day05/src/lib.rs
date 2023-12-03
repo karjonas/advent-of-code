@@ -67,20 +67,24 @@ fn is_nice_part_two(input: &str) -> bool {
     return false;
 }
 
-fn part_one() -> usize {
-    return common::read_file("2015/day05/input")
+fn part_one(input: &String) -> usize {
+    return input
         .lines()
         .fold(0, |sum, s| sum + if is_nice_part_one(s) { 1 } else { 0 });
 }
 
-fn part_two() -> usize {
-    return common::read_file("2015/day05/input")
+fn part_two(input: &String) -> usize {
+    return input
         .lines()
         .fold(0, |sum, s| sum + if is_nice_part_two(s) { 1 } else { 0 });
 }
-pub fn solve() {
-    println!("Part one: {}", part_one());
-    println!("Part two: {}", part_two());
+pub fn solve(filepath: &str) {
+    let input = std::fs::read_to_string(filepath)
+        .unwrap()
+        .trim_end_matches('\n')
+        .to_string();
+    println!("Part one: {}", part_one(&input));
+    println!("Part two: {}", part_two(&input));
 }
 
 #[cfg(test)]
@@ -103,5 +107,4 @@ mod tests {
         assert_eq!(is_nice_part_two("uurcxstgmygtbstg"), false);
         assert_eq!(is_nice_part_two("ieodomkazucvgmuy"), false);
     }
-
 }

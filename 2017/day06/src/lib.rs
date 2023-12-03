@@ -1,13 +1,11 @@
 use std::collections::HashMap;
-use std::fs::File;
-use std::io::prelude::*;
 
-pub fn solve() {
-    let mut file = File::open("2017/day06/input").unwrap();
-    let mut contents = String::new();
-    file.read_to_string(&mut contents).unwrap();
-
-    let bank_values: Vec<i32> = contents
+pub fn solve(filepath: &str) {
+    let input = std::fs::read_to_string(filepath)
+        .unwrap()
+        .trim_end_matches('\n')
+        .to_string();
+    let bank_values: Vec<i32> = input
         .trim()
         .split('\t')
         .map(|v| v.to_string().parse::<i32>().unwrap())

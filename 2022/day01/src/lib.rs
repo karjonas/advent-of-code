@@ -1,7 +1,10 @@
 extern crate common;
 
-pub fn solve() {
-    let input = common::read_file("2022/day01/input");
+pub fn solve(filepath: &str) {
+    let input = std::fs::read_to_string(filepath)
+        .unwrap()
+        .trim_end_matches('\n')
+        .to_string();
     let mut calories: Vec<usize> = input
         .split("\n\n")
         .map(|nums| nums.split('\n').map(|v| v.parse::<usize>().unwrap()).sum())

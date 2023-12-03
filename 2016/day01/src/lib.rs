@@ -49,7 +49,7 @@ fn find_intersection(
     return (false, 0, 0);
 }
 
-pub fn solve() {
+pub fn solve(_filepath: &str) {
     let input = vec![
         ('R', 5),
         ('R', 4),
