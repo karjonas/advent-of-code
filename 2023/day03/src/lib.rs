@@ -1,5 +1,3 @@
-extern crate common;
-
 #[derive(Debug)]
 struct AABB {
     x0: i32,
