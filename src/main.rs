@@ -307,6 +307,26 @@ fn solve_year_2023(day: usize, path: &str) {
     println!("");
 }
 
+fn solve_year_2025(day: usize, path: &str) {
+    let filepath = get_filepath(2025, day, path);
+    match day {
+        1 => year2025day01::solve(&filepath.as_str()),
+        2 => year2025day02::solve(&filepath.as_str()),
+        3 => year2025day03::solve(&filepath.as_str()),
+        4 => year2025day04::solve(&filepath.as_str()),
+        5 => year2025day05::solve(&filepath.as_str()),
+        6 => year2025day06::solve(&filepath.as_str()),
+        7 => year2025day07::solve(&filepath.as_str()),
+        8 => year2025day08::solve(&filepath.as_str()),
+        9 => year2025day09::solve(&filepath.as_str()),
+        10 => year2025day10::solve(&filepath.as_str()),
+        11 => year2025day11::solve(&filepath.as_str()),
+        12 => year2025day12::solve(&filepath.as_str()),
+        _ => {}
+    }
+    println!("");
+}
+
 fn solve_day(year: usize, day: usize, path: &str) {
     println!("== Year {} Day {:02} ==", year, day);
     match year {
@@ -319,6 +339,7 @@ fn solve_day(year: usize, day: usize, path: &str) {
         2021 => solve_year_2021(day, path),
         2022 => solve_year_2022(day, path),
         2023 => solve_year_2023(day, path),
+        2025 => solve_year_2025(day, path),
         _ => {}
     }
     println!("");
@@ -328,7 +349,7 @@ fn solve_day(year: usize, day: usize, path: &str) {
 /// Advent of Code solutions by Jonas Karlsson
 struct AoCArgs {
     /// year to solve
-    #[argh(option, short = 'y', default = "2023")]
+    #[argh(option, short = 'y', default = "2025")]
     year: usize,
 
     /// day to solve
@@ -351,13 +372,14 @@ fn main() {
         std::process::exit(-1);
     }
 
-    if year > 2023 || year < 2015 {
+    if year == 2024 || year < 2015 || year > 2025 {
         println!("Invalid year '{}'", year);
         std::process::exit(-1);
     }
 
     if day == 0 {
-        for i in 1..26 {
+        let num_days = if year == 2025 { 13 } else { 26 };
+        for i in 1..num_days {
             solve_day(year, i, "");
         }
     } else {

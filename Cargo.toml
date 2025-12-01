@@ -238,5 +238,18 @@ year2023day23 = { path = "2023/day23" }
 year2023day24 = { path = "2023/day24" }
 year2023day25 = { path = "2023/day25" }
 
+year2025day01 = { path = "2025/day01" }
+year2025day02 = { path = "2025/day02" }
+year2025day03 = { path = "2025/day03" }
+year2025day04 = { path = "2025/day04" }
+year2025day05 = { path = "2025/day05" }
+year2025day06 = { path = "2025/day06" }
+year2025day07 = { path = "2025/day07" }
+year2025day08 = { path = "2025/day08" }
+year2025day09 = { path = "2025/day09" }
+year2025day10 = { path = "2025/day10" }
+year2025day11 = { path = "2025/day11" }
+year2025day12 = { path = "2025/day12" }
+
 argh = "0.1.10"
 common = {path = "common"}

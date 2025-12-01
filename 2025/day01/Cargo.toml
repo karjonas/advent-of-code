@@ -1,0 +1,4 @@
+[package]
+name = "year2025day01"
+version = "0.1.0"
+authors = ["Jonas Karlsson <jonaskarlsson@fripost.org>"]
