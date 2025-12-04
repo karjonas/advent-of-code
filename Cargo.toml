@@ -2,6 +2,7 @@
 name = "advent-of-code"
 version = "0.1.0"
 authors = ["Jonas Karlsson <jonaskarlsson@fripost.org>"]
+edition = "2024"
 
 [dependencies]
 year2015day01 = { path = "2015/day01" }
