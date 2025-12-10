@@ -2,3 +2,6 @@
 name = "year2025day10"
 version = "0.1.0"
 authors = ["Jonas Karlsson <jonaskarlsson@fripost.org>"]
+
+[dependencies]
+good_lp = { version = "1.14.2", features = ["scip_bundled", "scip"], default-features = false }
