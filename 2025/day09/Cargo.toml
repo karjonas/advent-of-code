@@ -2,3 +2,6 @@
 name = "year2025day09"
 version = "0.1.0"
 authors = ["Jonas Karlsson <jonaskarlsson@fripost.org>"]
+
+[dependencies]
+geo = "0.32.0"
